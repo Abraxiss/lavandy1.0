@@ -1,0 +1,12 @@
+
+# HTID:14364346: DO NOT REMOVE OR MODIFY THIS LINE AND THE LINES BELOW
+php_value display_errors 1
+php_flag output_buffering en
+php_flag session.auto_start on
+Options All -indexes
+
+<FilesMatch "\.(ico|jpg|jpeg|png|gif)$">
+Header set Cache-Control "max-age=2592000, public"
+</FilesMatch>
+
+# DO NOT REMOVE OR MODIFY THIS LINE AND THE LINES ABOVE HTID:14364346:
