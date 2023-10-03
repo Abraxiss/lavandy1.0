@@ -10,29 +10,28 @@
     <span class="navbar-toggler-icon"></span>
   </button>	
 
-  
     
   <div class="collapse navbar-collapse" id="navbarNav">
 
     <ul class="navbar-nav">
       <li class="nav-item active">
-         <a class="nav-link" href="home.php">HOME</a>
+         <a class="nav-link" href="home.php"><span class="icon-home"> </span> HOME</a>
       </li>    	
 
       <li class="nav-item active">
-        <a class="nav-link" href="ordenes_read.php">VENTAS</a>
+        <a class="nav-link" href="ordenes_read.php"> <span class="icon-price-tags"> </span> VENTAS</a>
       </li>
       <li class="nav-item active">
-        <a class="nav-link" href="clientes_read.php">CLIENTES</a>
+        <a class="nav-link" href="clientes_read.php"> <span class="icon-users"> </span> CLIENTES</a>
       </li>
       <li class="nav-item active">
-        <a class="nav-link" href="traslados_read_p.php">TRASLADOS</a>
+        <a class="nav-link" href="traslados_read_p.php"><span class="icon-truck"> </span> TRASLADOS</a>
       </li>
       <li class="nav-item active">
-        <a class="nav-link" href="">CAJA</a>
+        <a class="nav-link" href="caja_read.php"><span class="icon-drawer"> </span> MI CAJA</a>
       </li>
       <li class="nav-item active">
-        <a class="nav-link active" href="user_update.php">MI PERFIL</a>
+        <a class="nav-link active" href="user_update.php"><span class="icon-user"> </span> MI PERFIL</a>
       </li>
 
     </ul>

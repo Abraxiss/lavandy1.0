@@ -17,6 +17,8 @@
 <br><br>
 
 
+
+
 <?php 
  $id = $_GET['id'];
   $queryR="SELECT * FROM vista_traslados
@@ -31,8 +33,52 @@
       
     </div>
     <div class="col-sm-8">
-      
-   <form action="crud_traslados/create.php" method="post"> 
+   <div class="card">
+  <div class="card-header">
+   <span class="icon-truck "></span> ORDEN DE TRASLADO <?php echo $filasR ['ABREV']?>-<?php echo $filasR ['N_ORD']?>
+   <div style="text-align: right;">
+  <a href="crud_traslados/anula.php?id=<?php echo $id ?>" style="color: red;">
+    <span class="icon-cross"></span> Anular orden
+  </a>
+</div>
+  </div>
+  <div class="card-body">
+  
+    <div class="form-row">
+      <div class="col">
+        <h6>Cliente :</h6>
+            <a href="tel:+51<?php echo $filasR ['TELEFONO'] ?>" class="btn 
+              btn-primary btn-sm " target="_blank"> 
+              <span class="icon-phone "></span>
+            </a> 
+            <?php echo $filasR ['NOMBRE']  ?> 
+ 
+            <br>
+              <a href="https://api.whatsapp.com/send?phone=51<?php echo $filasR ['TELEFONO'] ?>" class="btn btn-success btn-sm " target="_blank"> 
+              <span class="icon-whatsapp "></span>
+              </a>         
+             <a target="_blank" href="<?php echo $filasR ['LINK_UBICACION']  ?>"> 
+              <span class="icon-location"></span> <?php echo $filasR ['DIRECCION']  ?></a>
+
+      </div>
+      <div class="col">
+
+<h6>Alcance :</h6>
+<span class="icon-price-tag"></span> <?php echo $filasR ['OBS_TRASLADO']?>
+<br>
+<span class="icon-road"></span> <?php echo $filasR ['TIPO_TRASLADO_DESC']?>
+<br>
+<span class="icon-cross"></span> Anulado: ( <?php echo $filasR ['ANULADO']?> )
+
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
+<br> 
+   <form action="crud_traslados/update.php" method="post"> 
 
     <input value="<?php echo $idtiendaup ?>" id="id_tienda" name="id_tienda" type="hidden" >
     <input value="<?php echo $id_userup ?>" id="id_user" name="id_user" type="hidden" >
@@ -132,9 +178,9 @@
       <label for="obs_traslado">OBSERVACION</label>
       <input value="<?php echo $filasR ['OBS_TRASLADO']?>" type="text" class="form-control" id="obs_traslado" name="obs_traslado" >
     </div>
-  
+  <br> 
 
-    <button type="submit" id="guardar" name="guardar" class="btn btn-primary btn-lg btn-block mt-3">GUARDAR</button>
+    <button type="submit" id="guardar" name="guardar" class="btn btn-primary btn-lg btn-block mt-3">ACTUALIZAR</button>
   </form>
 
     </div>

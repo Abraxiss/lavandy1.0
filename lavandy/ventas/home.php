@@ -38,18 +38,19 @@ filter: brightness(80%);
     <div class="col col-8">
         <div class="infigrafia">
       	    
-      	<img src="img/logo_LAVANDY_1.0.png" width="200" heigth="250" > 
+      	<img src="img/logo_LAVANDY_1.0.png" width="150" heigth="200" > 
     	</div>
-
+<br><br>
       <div class="menu mm">
         
-        <a href="ordenes_read.php" class="btn btn-primary btn-lg btn-block">VENTAS</a>
-        <a href="clientes_read.php" class="btn btn-primary btn-lg btn-block">CLIENTES</a>
+        <a href="ordenes_read.php" class="btn btn-primary btn-lg btn-block"> <span class="icon-price-tags"> </span> VENTAS</a>
+        <a href="clientes_read.php" class="btn btn-primary btn-lg btn-block"><span class="icon-users"> </span> CLIENTES</a>
         
-        <a href="traslados_read_p.php" class="btn btn-primary btn-lg btn-block">TRASLADOS </a>
-        
+        <a href="traslados_read_p.php" class="btn btn-primary btn-lg btn-block"> <span class="icon-truck"> </span> TRASLADOS </a>
+
+        <a href="caja_read.php" class="btn btn-primary btn-lg btn-block"> <span class="icon-drawer"> </span> MI CAJA</a> 
          
-        <a href="user_update.php" class="btn btn-primary btn-lg btn-block">MI PERFIL</a> 
+        <a href="user_update.php" class="btn btn-primary btn-lg btn-block"> <span class="icon-user"> </span>MI PERFIL</a> 
 
       </div>
 

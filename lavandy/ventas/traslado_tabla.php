@@ -51,7 +51,8 @@
             <td>
  
            <?php echo $filasR ['STATUS_TRAS_DESC']  ?>
-
+              <br>
+           Anulado ( <?php echo $filasR ['ANULADO']?> )
           </td>         
 
 

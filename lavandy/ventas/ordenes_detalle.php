@@ -25,8 +25,18 @@ $filaso=mysqli_fetch_assoc($resulto);
 <!-- CARD -->
 <div class="card text-center">
   <div class="card-header">
+    <h5>
     <span class="icon-price-tags"></span> ORDEN | <?php echo $filaso ['user_nick']?> | <?php echo $filaso ['ABREV']?>-<?php echo $filaso ['N_ORD']?> 
+    </h5>
+
+      <div style="text-align: right;">
+  <a href="crud_ordenes/ord_delete.php?id=<?php echo $ID_ORD ?>" style="color: red;">
+    <span class="icon-bin "></span> Eliminar Orden
+  </a>
+</div>
+
   </div>
+
   <div class="card-body">
 <div class="card-group">
   <div class="card ">
