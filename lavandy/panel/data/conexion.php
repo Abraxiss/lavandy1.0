@@ -1,12 +1,20 @@
-<?php
 
-		$conexion = mysqli_connect(
-		  'localhost',
-		  'root',
-		  '',
-		  'lavandy'
-		) or die(mysqli_erro($mysqli));
-		  
+<?php
+$servername = 'localhost';
+$username = 'root';  // Nombre de usuario
+$password = '';  // Contraseña (en este caso está vacía)
+$database = 'lavandy';
+
+// Crear la conexión
+$conexion = new mysqli($servername, $username, $password, $database);
+
+// Verificar la conexión
+if ($conexion->connect_error) {
+    die('Error de conexión: ' . $conexion->connect_error);
+}
+
+// Establecer la codificación de caracteres a UTF-8
+$conexion->set_charset('utf8');
 ?>
 
 

@@ -58,9 +58,11 @@
 
     <div class="form-row">
       <div class="col">
-      <label for="id_tienda_o">ORIGEN</label>
-      <select class="custom-select" id="id_tienda_o" name="id_tienda_o" >
-      <option selected></option>
+      <label for="id_tienda_o">ORIGEN </label>
+      <select disabled class="custom-select" id="id_tienda_o" name="id_tienda_o" >
+      <option selected value=<?php echo $idtiendaup  ?> > 
+        <?php echo $n_tiendaup ?>
+      </option>
       <?php 
         $query="SELECT * FROM tiendas";
         $result=mysqli_query($conexion, $query);
@@ -73,8 +75,29 @@
       <?php } ?>
       </select>
       </div>
+
       <div class="col">
-      <label for="id_ord">ORDEN DE SERVICIO</label>
+      <label for="id_tienda_d">DESTINO</label>
+      <select class="custom-select" id="id_tienda_d" name="id_tienda_d" >
+      <option selected></option>
+      <?php 
+        $query2="SELECT * FROM tiendas";
+        $result2=mysqli_query($conexion, $query2);
+      ?>
+      <?php while($filas2=mysqli_fetch_assoc($result2)) { ?>
+        
+      <option value="<?php echo $filas2 ['ID_TIENDA']?>" >
+        <?php echo $filas2 ['TIENDA']  ?>
+      </option>
+      <?php } ?>
+      </select>
+    </div>
+
+   </div>
+
+    <div class="form-group">
+
+            <label for="id_ord">ORDEN DE SERVICIO</label>
       <select class="custom-select" id="id_ord" name="id_ord" >
       <option selected></option>
       <?php 
@@ -90,24 +113,8 @@
       </option>
       <?php } ?>
       </select>
-    </div>
-   </div>
 
-    <div class="form-group">
-      <label for="id_tienda_d">DESTINO</label>
-      <select class="custom-select" id="id_tienda_d" name="id_tienda_d" >
-      <option selected></option>
-      <?php 
-        $query2="SELECT * FROM tiendas";
-        $result2=mysqli_query($conexion, $query2);
-      ?>
-      <?php while($filas2=mysqli_fetch_assoc($result2)) { ?>
-        
-      <option value="<?php echo $filas2 ['ID_TIENDA']?>" >
-        <?php echo $filas2 ['TIENDA']  ?>
-      </option>
-      <?php } ?>
-      </select>
+
     </div>
 
 
@@ -130,3 +137,10 @@
 </div>
 
 <!-- Modal -->
+
+
+<script>
+    function deshabilitarSelect() {
+        document.getElementById("id_tienda_d").disabled = true;
+    }
+</script>

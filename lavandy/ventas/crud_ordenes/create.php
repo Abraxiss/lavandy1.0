@@ -17,6 +17,7 @@ if (isset($_POST['guardar'])) {
     $ID_LAVADO=$_POST['id_lavado'];
     $ID_PERFUME=$_POST['id_perfume'];
     $ADOMICILIO=$_POST['adomicilio'];
+    $OBS_ORD=$_POST['obs_ord'];
 
     $queryN="SELECT ordenes.ID_ORD, ordenes.N_ORD 
     FROM ordenes
@@ -52,7 +53,8 @@ FECHA_ENTREGA,
 HORA_ENTREGA,
 ID_LAVADO,
 ID_PERFUME,
-ADOMICILIO
+ADOMICILIO,
+OBS_ORD
 
 ) VALUES (
 
@@ -66,7 +68,8 @@ ADOMICILIO
 '$HORA_ENTREGA',
 '$ID_LAVADO',
 '$ID_PERFUME',
-'$ADOMICILIO'
+'$ADOMICILIO',
+'$OBS_ORD'
 
 )";
 

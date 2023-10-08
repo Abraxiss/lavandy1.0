@@ -4,7 +4,8 @@
       <th scope="col">CLIENTE </th>
       <th scope="col">ORIGEN</th>
       <th scope="col">DESTINO</th>
-      <th scope="col">ESTADO</th>
+      <th scope="col"> ANULADO </th>
+      <th scope="col">ALCANCE</th>
       <th scope="col">OPCIONES</th>
     </tr>
   </thead>
@@ -48,11 +49,19 @@
            <?php echo $filasR ['N_ORD']  ?> 
           </td>
 
-            <td>
- 
-           <?php echo $filasR ['STATUS_TRAS_DESC']  ?>
+           <td>
+          
+           <?php echo $filasR ['ANULADO']  ?> 
+          </td>
+
+          <td>
+            <?php echo $filasR ['OBS_ORD']  ?>
+            
               <br>
-           Anulado ( <?php echo $filasR ['ANULADO']?> )
+              <label style="color: red;">
+                <?php echo $filasR ['STATUS_TRAS_DESC']  ?>
+              </label>
+           
           </td>         
 
 

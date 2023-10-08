@@ -29,7 +29,7 @@ mysqli_close($conexion);
 }
 
 /*---redireccion ---*/
-mysqli_close($conexion);    
+ 
  ?>   
 <meta http-equiv="refresh" 
       content="0;url=./../traslados_update.php?id=<?php echo $ID_TRASLADO ?>" />

@@ -1,5 +1,17 @@
 <?php include('includes/session.php'); ?>
 
+<?php
+$hora_pc = "<div id='horapc'></div>";
+$fecha_pc = "<div id='fechapc'></div>";
+?>
+
+
+<?php
+$fecha_serv = date('Y-m-d'); // Formato de fecha: año-mes-día
+$hora_serv = date('H:i:s');  // Formato de hora: horas:minutos:segundos
+
+?>
+
 
 <link rel="stylesheet" href="style.css">
 <link rel="stylesheet" href="stylos/stylosmenu.css">
@@ -25,8 +37,12 @@
         <a class="nav-link" href="clientes_read.php"> <span class="icon-users"> </span> CLIENTES</a>
       </li>
       <li class="nav-item active">
-        <a class="nav-link" href="traslados_read_p.php"><span class="icon-truck"> </span> TRASLADOS</a>
+        <a class="nav-link" href="traslados_read.php?s=1"><span class="icon-truck"> </span> TRASLADOS</a>
       </li>
+      <li class="nav-item active">
+        <a class="nav-link" href="mensajes_enviar.php"><span class="icon-whatsapp"> </span> MENSAJES</a>
+      </li>
+
       <li class="nav-item active">
         <a class="nav-link" href="caja_read.php"><span class="icon-drawer"> </span> MI CAJA</a>
       </li>

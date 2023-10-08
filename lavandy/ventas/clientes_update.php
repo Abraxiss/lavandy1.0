@@ -5,7 +5,7 @@
 <?php include('menubar.php'); ?>
 <br>
 <center>  
-<div class="card text-white bg-primary mb-3" style="max-width: 100%;">
+<div class="card text-dark bg-secondary  mb-3" style="max-width: 100%;">
    <div class="card-body">
    <h5>ACTUALIZAR DATOS DEL CLIENTE</h5> 
   </div>

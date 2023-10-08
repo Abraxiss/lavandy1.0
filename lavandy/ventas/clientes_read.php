@@ -1,4 +1,4 @@
-<?php include('includes/header.php'); ?>
+<?php include('includes/header_datatables.php'); ?>
 <link rel="stylesheet" href="style.css">
 <?php include("../panel/data/conexion.php"); ?>
 
@@ -145,16 +145,17 @@ ORDER BY clientes.ID_CLIENTE DESC
 
 
 
-<table class="table table-striped table-sm">
+<table id="example" class="table table-striped table-sm">
   <thead  class="thead-dark">
     <tr>
    
       
       <th scope="col">NOMBRE</th>
+      <th scope="col">TELEFONO</th>
       <th scope="col">
         <span class="icon-home3 "></span> |
       <span class="icon-star-full "></span></th>
-
+      
       <th scope="col">OPCIONES</th>
     </tr>
   </thead>
@@ -164,22 +165,27 @@ ORDER BY clientes.ID_CLIENTE DESC
       <tr> 
      
 
-      <td>
-        <a href="tel:+51<?php echo $filasR ['TELEFONO'] ?>" class="btn 
-          btn-primary " target="_blank"> 
-          <span class="icon-phone "></span>
-        </a> 
-        <?php echo $filasR ['NOMBRE']  ?> 
+      <th scope="row">
+  
+        <?php echo $filasR ['NOMBRE']  ?>  
       <br>
-        <a href="https://api.whatsapp.com/send?phone=51<?php echo $filasR ['TELEFONO'] ?>" class="btn btn-success " target="_blank"> 
-           <span class="icon-whatsapp "></span>
-        </a>
 
-        <a target="_blank" href="<?php echo $filasR ['LINK_UBICACION']  ?>"> 
+
+        <a style="color:yellow;" target="_blank" href="<?php echo $filasR ['LINK_UBICACION']  ?>"> 
         <span class="icon-location"></span>        
         <?php echo $filasR ['DIRECCION']  ?></a>  
       	  	 
+      </th>
+      <td>
+        <a href="https://api.whatsapp.com/send?phone=51<?php echo $filasR ['TELEFONO'] ?>" class="btn btn-success " target="_blank"> 
+           <span class="icon-bubbles"></span>
+        </a>
+          <a href="tel:+51<?php echo $filasR ['TELEFONO'] ?>" class="btn 
+          btn-primary " target="_blank"> 
+          <span class="icon-phone "></span>
+         <?php echo $filasR ['TELEFONO']  ?> </a>        
       </td>
+
       <td> <span class="icon-home3"> </span>  
            <?php echo $filasR ['ABREV']  ?>
       	<br>
@@ -195,8 +201,8 @@ ORDER BY clientes.ID_CLIENTE DESC
 					<span class="icon-price-tags"></span>
 	      	</a> |
 
-	      	<a href="articulos_delete.php?id=<?php echo $filasR ['ID_CLIENTE']?>" class="btn btn-success"> 
-					<span class="icon-cog"></span>
+	      	<a href="mensajes_enviar.php?id_cliente=<?php echo $filasR ['ID_CLIENTE']?>" class="btn btn-success"> 
+					<span class="icon-whatsapp"></span>
 	      	</a>
 
       </td>
@@ -211,4 +217,4 @@ ORDER BY clientes.ID_CLIENTE DESC
 
 
 
-<?php include('includes/footer.php'); ?>
+<?php include('includes/footer_datatables.php'); ?>

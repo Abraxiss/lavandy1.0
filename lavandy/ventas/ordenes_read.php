@@ -1,4 +1,6 @@
-<?php include('includes/header.php'); ?>
+
+
+<?php include('includes/header_datatables.php'); ?>
 <link rel="stylesheet" href="style.css">
 <?php include("../panel/data/conexion.php"); ?>
 
@@ -34,7 +36,8 @@
     </div>
 
 
-    <div class="form-group">
+    <div class="form-row">
+     <div class="col-10"> 
 		<label for="id_cliente">Cliente:</label>
     <select class="custom-select" id="id_cliente" name="id_cliente" required>
     <option selected></option>
@@ -51,15 +54,22 @@
 
   	</select>
 		</div>
+<div class="col">
+    <a href="clientes_read.php" class="btn btn-block btn-warning " style="margin-top: 30px;"> 
+        <span class="icon-user-plus"></span>
+    </a> 
+</div>
 
+<br>
+    </div>
     <div class="form-row">
       <div class="col">
         <label for="fecha_inicio">Fecha de Inicio:</label>
-        <input type="date" class="form-control" id="fecha_inicio" name="fecha_inicio" required>
+        <input  type="date" class="form-control" id="fecha_inicio" name="fecha_inicio" value="<?php echo $fecha_serv ; ?>" required>
       </div>
       <div class="col">
         <label for="hora_inicio">Hora de Inicio:</label>
-				<input type="time" class="form-control" id="hora_inicio" name="hora_inicio" required>
+				<input value="" type="time" class="form-control" id="hora_inicio" name="hora_inicio" required>
 				</div>
     </div>
 
@@ -68,7 +78,7 @@
  <div class="form-row">
     	<div class="col">
       <label for="fecha_entrega">Fecha de Entrega:</label>
-      <input type="date" class="form-control" id="fecha_entrega" name="fecha_entrega" required>
+      <input  type="date" class="form-control" id="fecha_entrega" name="fecha_entrega" required>
     	</div>
 
     	<div class="col">
@@ -145,6 +155,10 @@
     </div>
 	</div>
 
+    <div class="form-group">
+      <label for="obs_ord">OBSERVACION</label>
+      <input type="text" class="form-control" id="obs_ord" name="obs_ord" required>
+    </div>
 
 
     <button type="submit" id="guardar" name="guardar" class="btn btn-primary btn-lg btn-block mt-3">GUARDAR</button>
@@ -163,7 +177,7 @@
 <br>
 
 	<?php 
-	$queryR="SELECT ordenes.TOTAL_VTA, ordenes.ID_ORD, ordenes.N_ORD, clientes.NOMBRE, clientes.TELEFONO, ordenes.FECHA_INICIO, ordenes.HORA_INICIO, ordenes.FECHA_ENTREGA, ordenes.HORA_ENTREGA, ordenes.SALDO, ordenes.ID_TIENDA, tiendas.ABREV, tiendas.TIENDA
+	$queryR="SELECT ordenes.TOTAL_VTA, ordenes.ID_ORD, ordenes.N_ORD, clientes.NOMBRE, clientes.TELEFONO , clientes.ID_CLIENTE, ordenes.FECHA_INICIO, ordenes.HORA_INICIO, ordenes.FECHA_ENTREGA, ordenes.HORA_ENTREGA, ordenes.SALDO, ordenes.ID_TIENDA, tiendas.ABREV, tiendas.TIENDA
 FROM (clientes INNER JOIN ordenes ON clientes.ID_CLIENTE = ordenes.ID_CLIENTE) INNER JOIN tiendas ON ordenes.ID_TIENDA = tiendas.ID_TIENDA
 WHERE (((ordenes.ID_TIENDA)='$idtiendaup'))
 ORDER BY ordenes.ID_ORD DESC ";
@@ -176,8 +190,10 @@ ORDER BY ordenes.ID_ORD DESC ";
 	?>
 
 
+    <!--Ejemplo tabla con DataTables-->
+                    
 
-<table class="table table-striped table-sm">
+<table id="example" class="table table-striped table-sm">
   <thead  class="thead-dark">
     <tr>
       <th scope="col">#ORD</th>
@@ -192,9 +208,11 @@ ORDER BY ordenes.ID_ORD DESC ";
    
     	<?php while($filasR=mysqli_fetch_assoc($resultR)) { ?>
       <tr>       
-      <th scope="row"><?php echo $filasR ['ABREV']  ?>-<?php echo $filasR ['N_ORD']  ?></th>
-      <td><?php echo $filasR ['FECHA_INICIO']  ?> 
-      		 <br><?php echo $filasR ['HORA_INICIO']  ?>
+      <th scope="row"><?php echo $filasR ['ABREV']  ?>-<?php echo $filasR ['N_ORD']  ?>
+      </th>
+      <td>
+        <?php echo $filasR ['FECHA_INICIO']  ?> 
+      	<br><?php echo $filasR ['HORA_INICIO']  ?>
       </td>
       <td><?php echo $filasR ['TELEFONO']  ?>
       	<br><?php echo $filasR ['NOMBRE']  ?>
@@ -209,24 +227,20 @@ ORDER BY ordenes.ID_ORD DESC ";
 					<a href="crud_diario/create_vta.php?ido=<?php echo $filasR ['ID_ORD']?>" class="btn btn-primary"> 
 					<span class="icon-checkmark"></span>
 	      	</a> |
-					<a href="articulos_delete.php?id=<?php echo $filasR ['ID_ORD']?>" class="btn btn-warning"> 
-					<span class="icon-shrink2"></span>
-	      	</a> |
 
-	      	<a href="articulos_delete.php?id=<?php echo $filasR ['ID_ORD']?>" class="btn btn-success"> 
-					<span class="icon-cog"></span>
+	      	<a href="mensajes_enviar.php?id_cliente=<?php echo $filasR ['ID_CLIENTE']?>" class="btn btn-success"> 
+					<span class="icon-whatsapp"></span>
 	      	</a>
 
       </td>
 			</tr>
     <?php } ?>
-
-
-    
-    
+  
   </tbody>
 </table>
+                    
 
 
+  
 
-<?php include('includes/footer.php'); ?>
+<?php include('includes/footer_datatables.php'); ?>

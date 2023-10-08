@@ -8,7 +8,7 @@
 
 
 <center>  
-<div class="card text-white bg-primary mb-3" style="max-width: 100%;">
+<div class="card text-dark bg-secondary mb-3" style="max-width: 100%;">
   <div class="card-body">
    <h5>ACTUALIZAR ORDEN DE TRASLADO</h5> 
   </div>

@@ -12,11 +12,16 @@
 if (isset($_GET['id'])) {
 $ID_ORD=$_GET['id'];
 
-  $queryo="SELECT ordenes.ID_ORD, ordenes.*, usuarios.user_nick, tiendas.ABREV, clientes.NOMBRE, clientes.TELEFONO, clientes.DIRECCION, tipolavados.LAVADO, perfume.PERFUME, forma_pagos.FORMAPAGO
-FROM (((((ordenes INNER JOIN tiendas ON ordenes.ID_TIENDA = tiendas.ID_TIENDA) INNER JOIN perfume ON ordenes.ID_PERFUME = perfume.ID_PERFUME) INNER JOIN clientes ON ordenes.ID_CLIENTE = clientes.ID_CLIENTE) INNER JOIN tipolavados ON ordenes.ID_LAVADO = tipolavados.ID_LAVADO) INNER JOIN usuarios ON ordenes.ID_USER = usuarios.id_user) LEFT JOIN forma_pagos ON ordenes.FORMA_PAGO = forma_pagos.ID_FP
+  $queryo="SELECT ordenes.ID_ORD, ordenes.*, usuarios.user_nick, tiendas.ABREV, clientes.NOMBRE, clientes.TELEFONO, clientes.DIRECCION, tipolavados.LAVADO, perfume.PERFUME, forma_pagos.FORMAPAGO, estatus_orden.ST_ORD
+FROM ((((((ordenes INNER JOIN tiendas ON ordenes.ID_TIENDA = tiendas.ID_TIENDA) INNER JOIN perfume ON ordenes.ID_PERFUME = perfume.ID_PERFUME) INNER JOIN clientes ON ordenes.ID_CLIENTE = clientes.ID_CLIENTE) INNER JOIN tipolavados ON ordenes.ID_LAVADO = tipolavados.ID_LAVADO) INNER JOIN usuarios ON ordenes.ID_USER = usuarios.id_user) LEFT JOIN forma_pagos ON ordenes.FORMA_PAGO = forma_pagos.ID_FP) INNER JOIN estatus_orden ON ordenes.STATUS_ORD = estatus_orden.ID_ST_ORD
 WHERE (((ordenes.ID_ORD)='$ID_ORD'))";
+
   $resulto=mysqli_query($conexion, $queryo);
 $filaso=mysqli_fetch_assoc($resulto);
+
+
+
+
 
 }
 ?>
@@ -25,9 +30,9 @@ $filaso=mysqli_fetch_assoc($resulto);
 <!-- CARD -->
 <div class="card text-center">
   <div class="card-header">
-    <h5>
-    <span class="icon-price-tags"></span> ORDEN | <?php echo $filaso ['user_nick']?> | <?php echo $filaso ['ABREV']?>-<?php echo $filaso ['N_ORD']?> 
-    </h5>
+    <B><h4>
+    <span class="icon-price-tags"></span> ORDEN | <?php echo $filaso ['ABREV']?>-<?php echo $filaso ['N_ORD']?> 
+    </B></h4>
 
       <div style="text-align: right;">
   <a href="crud_ordenes/ord_delete.php?id=<?php echo $ID_ORD ?>" style="color: red;">
@@ -36,6 +41,33 @@ $filaso=mysqli_fetch_assoc($resulto);
 </div>
 
   </div>
+</div>
+
+<br>  
+<!-- OPCIONES -->
+<div class="container" style="max-width: 100%;">
+  <div class="row">
+    <div class="col-sm">
+      <button  type="button" class="btn btn-primary btn-lg btn-block" data-toggle="modal" data-target="#morden" >
+  <span class="icon-price-tags"></span> MODIFICAR ORDEN
+</button>
+
+    </div>
+    <div class="col-sm">
+      <button  type="button" class="btn btn-success btn-lg btn-block" data-toggle="modal" data-target="#iorden" >
+ <span class=" icon-coin-dollar"></span> C A J A
+</button>
+    </div>
+    <div class="col-sm">
+          <button  type="button" class="btn btn-dark btn-lg  btn-block" data-toggle="modal" data-target="#odetalle" >
+     <span class=" icon-plus"></span> NUEVO ITEM
+    </button>
+    </div>
+  </div>
+</div>
+
+
+
 
   <div class="card-body">
 <div class="card-group">
@@ -43,13 +75,10 @@ $filaso=mysqli_fetch_assoc($resulto);
     
       <h5 class="card-title">
 <!-- Button trigger modal -->
-<button  type="button" class="btn btn-primary btn-lg btn-block" data-toggle="modal" data-target="#morden" >
-  <span class="icon-price-tags"></span> <?php echo $filaso ['ABREV']?>-<?php echo $filaso ['N_ORD']?>
-</button>
 
       </h5>
 
-      <table class="table table-sm table-striped">
+      <table class="table table-sm table-striped ">
   <tbody>
     <tr>
       <th scope="row">CLIENTE</th>
@@ -90,8 +119,17 @@ $filaso=mysqli_fetch_assoc($resulto);
     </tr>
    <tr>
       <th scope="row">STATUS</th>
-      <td><?php echo $filaso ['STATUS_ORD']?></td>
+      <td><?php echo $filaso ['ST_ORD']?></td>
     </tr>
+    <tr>
+      <th scope="row">OBSERVACION</th>
+      <td><?php echo $filaso ['OBS_ORD']?></td>
+    </tr>
+    <tr>
+      <th scope="row">VENDEDOR</th>
+      <td><?php echo $filaso ['user_nick']?></td>
+    </tr>
+
   </tbody>
 </table>
 
@@ -102,9 +140,7 @@ $filaso=mysqli_fetch_assoc($resulto);
     
       <h5 class="card-title">
 <!-- Button trigger modal -->
-<button  type="button" class="btn btn-primary btn-lg btn-block" data-toggle="modal" data-target="#iorden" >
- <span class=" icon-coin-dollar"></span> IMPORTES
-</button>
+
       </h5>
 
 
@@ -162,9 +198,7 @@ $filaso=mysqli_fetch_assoc($resulto);
     
   </div>
   <div class="card-footer text-muted">
-    <button  type="button" class="btn btn-success  btn-block" data-toggle="modal" data-target="#odetalle" >
-     <span class=" icon-plus"></span> NUEVO ITEM
-    </button>
+
   </div>
 </div>
 
@@ -291,7 +325,6 @@ $filaso=mysqli_fetch_assoc($resulto);
 
 <!-- Modal -->
 
-<br>
 <!-- tabla -->
 	<?php 
 	$queryD="SELECT detallesdeord.*, detallesdeord.ID_ORD
@@ -301,7 +334,7 @@ WHERE (((detallesdeord.ID_ORD)='$ID_ORD'))
 	$resultD=mysqli_query($conexion, $queryD);
  	
 	?>
-
+<h4> Se recepciona la(s) siguiente(s) prenda(s)</h4>
 <table class="table table-striped table-sm">
   <thead  class="thead-dark">
     <tr>
@@ -532,7 +565,7 @@ WHERE (((detallesdeord.ID_ORD)='$ID_ORD'))
 
         <div class="col">
         <label for="fecha_cancelacion">FECHA DE CANCELACION</label>
-        <input type="date" class="form-control" id="fecha_cancelacion" name="fecha_cancelacion" >
+        <input value="<?php echo $fecha_serv?>" type="date" class="form-control" id="fecha_cancelacion" name="fecha_cancelacion" >
       </div>
 
     </div>
