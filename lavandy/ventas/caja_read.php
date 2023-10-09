@@ -49,8 +49,12 @@
 
 
   <?php 
-    $queryR="SELECT * FROM mov_caja
-WHERE ID_TIENDA='$idtiendaup'AND SALDO<>0"; 
+    $queryR="SELECT diario.ID_DIARIO, diario.FECHA_OP, diario.ID_ORD, ordenes.ID_USER, usuarios.user_nick, ordenes.N_ORD, tiendas.ABREV, diario.TIPO_OPERACION AS ID_TIPO, tipo_operacion.TIPO_OPERACION, diario.CCOSTO, ccosto.N_CCOSTO, diario.GLOSA, diario.CTA_CONTABLE, diario.DEBE, diario.HABER, diario.SALDO, ordenes.ID_TIENDA, ordenes.ID_CLIENTE
+FROM ((((diario INNER JOIN ordenes ON diario.ID_ORD = ordenes.ID_ORD) INNER JOIN tipo_operacion ON diario.TIPO_OPERACION = tipo_operacion.ID_TIPOOP) INNER JOIN ccosto ON diario.CCOSTO = ccosto.ID_CCOSTO) INNER JOIN usuarios ON ordenes.ID_USER = usuarios.id_user) INNER JOIN tiendas ON ordenes.ID_TIENDA = tiendas.ID_TIENDA
+WHERE (((diario.CTA_CONTABLE)=1011) AND ((diario.SALDO)<>0) AND ((ordenes.ID_TIENDA)='$idtiendaup'))
+ORDER BY ordenes.N_ORD DESC;
+
+"; 
   $resultR=mysqli_query($conexion, $queryR);
   ?>
 

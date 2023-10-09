@@ -48,6 +48,8 @@ filter: brightness(80%);
         
         <a href="traslados_read_p.php" class="btn btn-primary btn-lg btn-block"> <span class="icon-truck"> </span> TRASLADOS </a>
 
+        <a href="mensajes_enviar.php" class="btn btn-primary btn-lg btn-block"> <span class="icon-whatsapp"> </span> MENSAJES</a>
+
         <a href="caja_read.php" class="btn btn-primary btn-lg btn-block"> <span class="icon-drawer"> </span> MI CAJA</a> 
          
         <a href="user_update.php" class="btn btn-primary btn-lg btn-block"> <span class="icon-user"> </span>MI PERFIL</a> 

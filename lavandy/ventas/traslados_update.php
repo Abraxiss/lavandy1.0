@@ -21,10 +21,14 @@
 
 <?php 
  $id = $_GET['id'];
-  $queryR="SELECT * FROM vista_traslados
-  WHERE ID_TRASLADO ='$id' ";
+  $queryR="SELECT traslado.ID_TRASLADO, traslado.ID_USER, traslado.ID_TDA, traslado.ID_TIPO_TRASLADO, traslado.ID_HORARIO, traslado.ID_ORD, traslado.ORIGEN_TDA, traslado.FECHA_RECOJO, traslado.DESTINO_TDA, traslado.FECHA_ENTREGA, traslado.OBS_TRASLADO, traslado.ID_STATUS_TRAS, traslado.ANULADO, tipo_traslado.TIPO_TRASLADO, horarios_movil.HORARIO, ordenes.N_ORD, tiendas.ABREV, clientes.NOMBRE, clientes.TELEFONO, clientes.LINK_UBICACION ,clientes.DIRECCION, tiendas_1.TIENDA AS TDAO, tiendas_2.TIENDA AS TDAD, estatus_tras.STATUS_TRAS
+FROM (((((((traslado INNER JOIN tipo_traslado ON traslado.ID_TIPO_TRASLADO = tipo_traslado.ID_TIPO) INNER JOIN horarios_movil ON traslado.ID_HORARIO = horarios_movil.ID_HORARIO) INNER JOIN ordenes ON traslado.ID_ORD = ordenes.ID_ORD) INNER JOIN tiendas ON ordenes.ID_TIENDA = tiendas.ID_TIENDA) INNER JOIN clientes ON ordenes.ID_CLIENTE = clientes.ID_CLIENTE) INNER JOIN tiendas AS tiendas_1 ON traslado.ORIGEN_TDA = tiendas_1.ID_TIENDA) INNER JOIN tiendas AS tiendas_2 ON traslado.DESTINO_TDA = tiendas_2.ID_TIENDA) INNER JOIN estatus_tras ON traslado.ID_STATUS_TRAS = estatus_tras.ID_STATUS_TRAS
+WHERE (((traslado.ID_TRASLADO)='$id')); ";
   $resultR=mysqli_query($conexion, $queryR);
   $filasR=mysqli_fetch_assoc($resultR);
+
+
+
 
   ?>
 <div class="container">
@@ -37,9 +41,27 @@
   <div class="card-header">
    <span class="icon-truck "></span> ORDEN DE TRASLADO <?php echo $filasR ['ABREV']?>-<?php echo $filasR ['N_ORD']?>
    <div style="text-align: right;">
+
+<?php 
+if ($filasR ['ANULADO']=='si') {
+  ?>
+  <a href="crud_traslados/activar.php?id=<?php echo $id ?>" style="color: blue">
+    <span class="icon-checkmark "></span> Activar orden
+  </a>
+  <?php
+} else {
+  ?>
   <a href="crud_traslados/anula.php?id=<?php echo $id ?>" style="color: red;">
     <span class="icon-cross"></span> Anular orden
   </a>
+  <?php
+}
+
+?>
+
+
+
+
 </div>
   </div>
   <div class="card-body">
@@ -66,9 +88,9 @@
 <h6>Alcance :</h6>
 <span class="icon-price-tag"></span> <?php echo $filasR ['OBS_TRASLADO']?>
 <br>
-<span class="icon-road"></span> <?php echo $filasR ['TIPO_TRASLADO_DESC']?>
+<span class="icon-road"></span> <?php echo $filasR ['TIPO_TRASLADO']?>
 <br>
-<span class="icon-cross"></span> Anulado: ( <?php echo $filasR ['ANULADO']?> )
+<span class=" icon-info "></span> Anulado: ( <?php echo $filasR ['ANULADO']?> )
 
       </div>
     </div>
@@ -87,7 +109,7 @@
       <div class="col">
       <label for="tipo_traslado">  TIPO TRASLADO </label>
       <select class="custom-select" id="tipo_traslado" name="tipo_traslado" >
-      <option selected value="<?php echo $filasR ['TIPO_TRASLADO']?>" ><?php echo $filasR ['TIPO_TRASLADO_DESC']?></option>
+      <option selected value="<?php echo $filasR ['ID_TIPO_TRASLADO']?>" ><?php echo $filasR ['TIPO_TRASLADO']?></option>
       <?php 
         $query="SELECT * FROM tipo_traslado ";
         $result=mysqli_query($conexion, $query);

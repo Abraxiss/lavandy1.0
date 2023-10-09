@@ -9,33 +9,36 @@ if (isset($_POST['guardar'])) {
 /*---create TRASLADO ---*/
 
     $ID_USER=$_POST['id_user'];
-    $TIPO_TRASLADO = $_POST['tipo_traslado']; 
+    $ID_TDA=$_POST['id_tienda_o'];
+    $ID_TIPO_TRASLADO = $_POST['tipo_traslado']; 
     $ID_HORARIO = $_POST['horarios_movil'];
      $ID_ORD = $_POST['id_ord'];
      $ORIGEN_TDA = $_POST['id_tienda_o'];
      $DESTINO_TDA = $_POST['id_tienda_d'];
      $OBS_TRASLADO = $_POST['obs_traslado'];
-     $STATUS_TRAS = 1 ;
+     $ID_STATUS_TRAS = 1 ;
 
 $query= "INSERT INTO traslado(
 
     ID_USER,
-    TIPO_TRASLADO,
+    ID_TDA,
+    ID_TIPO_TRASLADO,
     ID_HORARIO,
     ID_ORD,
     ORIGEN_TDA,
     DESTINO_TDA,
     OBS_TRASLADO,
-    STATUS_TRAS
+    ID_STATUS_TRAS
 ) VALUES (
     '$ID_USER',
-    '$TIPO_TRASLADO',
+    '$ID_TDA',
+    '$ID_TIPO_TRASLADO',
     '$ID_HORARIO',
     '$ID_ORD',
     '$ORIGEN_TDA',
     '$DESTINO_TDA',
     '$OBS_TRASLADO',
-    '$STATUS_TRAS'
+    '$ID_STATUS_TRAS'
 )";
 
 /*---create ---*/

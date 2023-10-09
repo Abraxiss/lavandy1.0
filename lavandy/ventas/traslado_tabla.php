@@ -59,7 +59,7 @@
             
               <br>
               <label style="color: red;">
-                <?php echo $filasR ['STATUS_TRAS_DESC']  ?>
+                <?php echo $filasR ['STATUS_TRAS']  ?>
               </label>
            
           </td>         
