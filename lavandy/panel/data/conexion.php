@@ -1,5 +1,8 @@
 
 <?php
+date_default_timezone_set('America/Lima');
+
+
 $servername = 'localhost';
 $username = 'root';  // Nombre de usuario
 $password = '';  // Contraseña (en este caso está vacía)

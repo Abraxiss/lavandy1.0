@@ -1,0 +1,30 @@
+  .userup{
+    color: #49257C;
+      height: 35px;
+ 
+
+    padding: 0px;
+    padding-left: 6px;
+    padding-right: 10px;
+    background:#F0FE09;
+    border-radius: 0.5em;
+    vertical-align: bottom;
+    display: flex;
+    text-transform: 
+  }
+
+  h6{
+    margin-top: 8px;
+
+  }
+
+      .bar {
+      position: fixed;
+      width: 100%;
+      top: 0;
+      background-color: #49257C;
+      opacity: 0.9;
+      color: white;
+      padding: 15px;
+      z-index: 1000; 
+    }

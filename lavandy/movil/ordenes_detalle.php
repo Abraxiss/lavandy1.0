@@ -1,0 +1,1 @@
+<?php include("../tienda/ordenes_detalle.php"); ?>
