@@ -87,10 +87,10 @@
       <div class="acessos text-center">
             <br>
           <a href="./productos.php" class="btn-lg btn-block">Hacer un pedido</a>
-          <a href="./seguridad.php" class="btn-lg btn-block">Protocolos covit-19</a>
-          <a href="./micuenta.php" class="btn-lg btn-block">Mi cuenta</a>
+         
           <a href="./mispedidos.php" class="btn-lg btn-block">Mis pedidos</a> <br>
           <a href="./acesso.php" class="btn-lg btn-block">Iniciar sesión</a>
+           <a href="./micuenta.php" class="btn-lg btn-block">Mi cuenta</a>
       </div>
    
       </div>
@@ -108,13 +108,33 @@
         <h5>&nbsp<span class="icon-user"></span>&nbsp Zonas de Reparto:</h5>
 
       <div class="center ">
-      <img   src="./img/zonas.jpg" class="img-fluid" class="responsive-img" width="650" heigth="400" >  
+      <img   src="./img/zonasr.jpg" class="img-fluid" class="responsive-img" width="650" heigth="400" >  
 
     </div>
 
     </div>
 
   </div>
+</div>
+</div>
+
+
+<div class="container datos">
+  <div class="row center" >
+
+    <div class="col-12 col-sm-12 col-md-10 col-lg-8 col-xl-7 descrip">
+      <div class="datos"> 
+        <h5>&nbsp<span class="icon-user"></span>&nbsp Proceso de lavado:</h5>
+
+      <div class="center ">
+      <img   src="./img/procesos.jpg" class="img-fluid" class="responsive-img" width="650" heigth="400" >  
+
+    </div>
+
+    </div>
+
+  </div>
+</div>
 </div>
 
 <div class="container fluid ">

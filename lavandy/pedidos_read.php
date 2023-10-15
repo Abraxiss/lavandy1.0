@@ -1,6 +1,4 @@
-<?php include('panel/includes/header.php'); ?>
-<?php include("panel/data/conexion.php"); ?>
-<link rel="stylesheet" href="style.css">
+
 
 
 <?php 
@@ -27,7 +25,7 @@ if (!$_GET) {
 
 
 
-
+<br>
 
 <div class="container">
   <div class="row">
@@ -171,4 +169,3 @@ if (!$_GET) {
 
 
 <?php mysqli_close($conexion); ?>
-<?php include('panel/includes/footer.php'); ?>

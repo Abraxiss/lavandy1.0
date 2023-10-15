@@ -7,13 +7,6 @@
 
 
 <style>
-	.infigrafia{
-
-		padding-top: 20px;
-		padding-bottom: 10px;
-	}
-
-
 
 .menu a:hover {
 filter: brightness(80%);
@@ -36,10 +29,6 @@ filter: brightness(80%);
       
     </div>
     <div class="col-md-auto">
-        <div class="infigrafia">
-      	    
-      	<img src="img/home.png" width="300" heigth="350" > 
-    	</div>
 
       <div class="menu mm">
         <a href="user_update.php" class="btn btn-primary btn-lg btn-block">MI PERFIL</a>

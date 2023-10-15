@@ -4,15 +4,18 @@
 <link rel="stylesheet" href="style.css">
 
 
-
-
 <style>
-	.infigrafia{
 
+	.infigrafia{
+max-width: 100%; /* Asegura que el contenedor no sea más ancho que la pantalla */
 		padding-top: 20px;
 		padding-bottom: 10px;
 	}
-
+.imagen {
+  width: 100%; /* La imagen ocupa todo el ancho del contenedor */
+  height: auto; /* La altura se ajusta automáticamente para mantener la proporción de la imagen */
+  display: block; /* Elimina cualquier espacio adicional alrededor de la imagen */
+}
 
 
 .menu a:hover {
@@ -35,12 +38,12 @@ filter: brightness(80%);
     <div class="col col">
       
     </div>
-    <div class="col col-8">
-        <div class="infigrafia">
-      	    
-      	<img src="img/logo_LAVANDY_1.0.png" width="150" heigth="200" > 
+    <div class="col col-8 col-lg-6">
+      <br> <br>
+      <div class="infigrafia">
+      <img src="img/lavandy.gif" width="200" heigth="200" > 
     	</div>
-<br><br>
+      <br><br>
       <div class="menu mm">
         
         <a href="ordenes_read.php" class="btn btn-primary btn-lg btn-block"> <span class="icon-price-tags"> </span> VENTAS</a>

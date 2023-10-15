@@ -9,6 +9,7 @@ if (isset($_POST['guardar'])) {
 	$c2 = $_POST['id_user'];
 	$c3 = $_POST['id_catalogo'];
 	$c4 = $_POST['art_nombre'];
+	
 
 	if ($_FILES['art_imagen']['name']!= null) {
 
@@ -19,7 +20,7 @@ if (isset($_POST['guardar'])) {
 			move_uploaded_file($archivo,$destino);
 
 			$c9="img/art";
-			$c9=$c9."/".$name_img.$c4 ; ///imagen/nombre.jpg
+			$c9=$c9."/".$name_img ; ///imagen/nombre.jpg
 			
 	
 	}else{

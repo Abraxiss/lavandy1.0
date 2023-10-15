@@ -1,9 +1,19 @@
 <?php include('includes/header.php'); ?>
 <div class="p-5 text-center">
-<?php include("./../panel/data/conexion.php");?> 
+<?php include("./../panel/data/conexion.php");?>
+
+<style>
+  body {
+background: #1E9600;  /* fallback for old browsers */
+background: -webkit-linear-gradient(to right, #FF0000, #FFF200, #1E9600);  /* Chrome 10-25, Safari 5.1-6 */
+background: linear-gradient(to right, #FF0000, #FFF200, #1E9600); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+color: black;
+}
+</style>
 
 
-  <br>
+
 <h4>VENTAS LAVANDY</h4>
 </div>
 

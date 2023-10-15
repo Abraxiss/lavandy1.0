@@ -8,8 +8,6 @@ if (isset($_SESSION['usuario'])) {
       $userup=$_SESSION['usuario'];
       $id_userup=$_SESSION['id_usuario'];
 
-
-
 } else {
   @session_destroy();
   mysqli_close($conexion);

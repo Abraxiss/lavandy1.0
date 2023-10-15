@@ -15,7 +15,7 @@
 
 
 	<div class="center ">
-	<img   src="./img/logo.png" class="img-fluid" class="responsive-img" width="650" heigth="400" >	
+	<img   src="./img/logolavandy.gif" class="img-fluid" class="responsive-img" width="650" heigth="400" >	
 	</div>
 
   

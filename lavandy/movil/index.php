@@ -1,8 +1,19 @@
 <?php include('includes/header.php'); ?>
 <div class="p-5 text-center">
 
+<style>
+  body {
 
-  <br>
+
+background: #49257C;  /* fallback for old browsers */
+background: -webkit-linear-gradient(to right, #000000, #49257C, #000000);  /* Chrome 10-25, Safari 5.1-6 */
+background: linear-gradient(to right, #000000, #49257C, #000000); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+
+color: white;
+}
+</style>
+
 <h4>MOVILIDAD LAVANDY</h4>
 </div>
 

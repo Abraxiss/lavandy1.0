@@ -1,5 +1,6 @@
 <?php include('includes/session.php'); ?>
 
+
 <?php
 $hora_pc = "<div id='horapc'></div>";
 $fecha_pc = "<div id='fechapc'></div>";
@@ -16,17 +17,43 @@ $hora_serv = date('H:i:s');  // Formato de hora: horas:minutos:segundos
 <link rel="stylesheet" href="style.css">
 <link rel="stylesheet" href="stylos/stylosmenu.css">
 
+<style>
+  .modal-backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 100;
+    background-color: #49257C;
+}
+.modal-content {
+
+    
+    background-color: white;
+color: #49257C;
+}
+
+</style>
+
+
+
+
 <nav class="navbar navbar-expand-lg navbar-dark navbar-bg  bar">
 
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>	
 
+      <div class="infigrafia" >
+        <a href="home.php">
+      <img style="border-radius: 50px" src="img/lavandy.gif" width="40" heigth="40" > </a>
+      </div> 
+
     
   <div class="collapse navbar-collapse" id="navbarNav">
 
     <ul class="navbar-nav">
       <li class="nav-item active">
+       
          <a class="nav-link" href="home.php"><span class="icon-home"> </span> HOME</a>
       </li>    	
 
@@ -70,10 +97,10 @@ $hora_serv = date('H:i:s');  // Formato de hora: horas:minutos:segundos
  
 
 
-<div class="modal" tabindex="-1" role="dialog" id="V1">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
+<div class="modal" tabindex="-1" role="dialog" id="V1" >
+  <div class="modal-dialog" role="document" >
+    <div class="modal-content " >
+      <div class="modal-header" >
         <h5 class="modal-title">CERRAR SESIÓN</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>

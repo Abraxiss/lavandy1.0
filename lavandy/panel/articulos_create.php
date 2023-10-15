@@ -29,6 +29,7 @@
     <small id="Help" class="form-text text-muted">Ingrese Codigo de producto, puede tener hasta 8 digitos entre Numeros y Letras.</small>
   </div>
 
+
 <div class="form-group">
 <label for="id_catalogo">Catálogo al que pertenese el producto.</label>
   <select class="custom-select" id="id_catalogo" name="id_catalogo" required>

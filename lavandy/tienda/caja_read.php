@@ -4,7 +4,7 @@
 
 <?php include('menubar.php'); ?>
 
-<br>
+<br><br>
 <!-- Button trigger modal -->
 <button  type="button" class="btn btn-primary btn-lg btn-block" data-toggle="modal" data-target="#noperacion" >
   <span class="icon-drawer "></span> NUEVA OPERACION 
@@ -124,10 +124,10 @@ ORDER BY ordenes.N_ORD DESC;
     <?php } ?>
 
   <?php 
-    $queryT="SELECT mov_caja.ID_TIENDA, Sum(mov_caja.DEBE) AS SumaDeDEBE, Sum(mov_caja.HABER) AS SumaDeHABER, Sum(mov_caja.SALDO) AS SumaDeSALDO
-      FROM mov_caja
-      GROUP BY mov_caja.ID_TIENDA
-      HAVING (((mov_caja.ID_TIENDA)='$idtiendaup'))"; 
+    $queryT="SELECT diario.CTA_CONTABLE, tiendas.ID_TIENDA, Sum(diario.DEBE) AS SumaDeDEBE, Sum(diario.HABER) AS SumaDeHABER, Sum(diario.SALDO) AS SumaDeSALDO
+FROM (diario INNER JOIN ordenes ON diario.ID_ORD = ordenes.ID_ORD) INNER JOIN tiendas ON ordenes.ID_TIENDA = tiendas.ID_TIENDA
+GROUP BY diario.CTA_CONTABLE, tiendas.ID_TIENDA
+HAVING (((diario.CTA_CONTABLE)=1011) AND ((tiendas.ID_TIENDA)='$idtiendaup'));"; 
     $resultT=mysqli_query($conexion, $queryT);
     $filasT=mysqli_fetch_assoc($resultT)
   ?>

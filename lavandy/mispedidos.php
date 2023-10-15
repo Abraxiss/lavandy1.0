@@ -3,7 +3,9 @@
 <?php include("panel/data/conexion.php"); ?>
 <?php include("./includes/menubar.php"); ?>
 <link rel="stylesheet" href="css/perfil.css">
-      
+<link rel="shortcut icon" href="./panel/includes/favicon.ico">
+
+
 <?php 
 if (isset($_SESSION['cliente'])) { 
   

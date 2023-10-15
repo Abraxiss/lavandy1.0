@@ -36,9 +36,11 @@
       <div class="acessos text-center">
             <br>
           <a href="./productos.php" class="btn-lg btn-block">Hacer un pedido</a>
-          <a href="./seguridad.php" class="btn-lg btn-block">Protocolos covit-19</a>
+          
+          <a href="./mispedidos.php" class="btn-lg btn-block">Mis pedidos</a>
           <a href="./micuenta.php" class="btn-lg btn-block">Mi cuenta</a> 
-          <a href="./mispedidos.php" class="btn-lg btn-block">Mis pedidos</a> <br>
+
+          <br>
       </div>
    
       </div>
