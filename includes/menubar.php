@@ -1,10 +1,37 @@
 
 <link rel="stylesheet" href="style.css">
 <link rel="stylesheet" href="css/stylosmenu.css">
+<style>
+  .modal-backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 100;
+    background-color: #49257C;
+}
+.modal-content {
+
+    
+    background-color: white;
+color: #49257C;
+}
+
+a{    
+   
+color: white;
+}
+
+a:hover {
+  background-color: yellow;
+  border-radius: 6px;
+}
+
+</style>
+
 
   <?php      
 
-  $query7= "SELECT * FROM user WHERE id_user= 1"; 
+  $query7= "SELECT * FROM lavandy_datos WHERE id_user= 1"; 
   $result7 = mysqli_query($conexion, $query7);
   $filas7=mysqli_fetch_array($result7);
     $c3 =strtoupper($filas7['user_empresa']) ;
@@ -22,15 +49,16 @@
 
 
 
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+<nav class="navbar navbar-expand-lg  bar">
 
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
+    <span class="icon-menu2" style="color:white;"></span>
   </button>	
 
   
     
   <div class="collapse navbar-collapse" id="navbarNav">
+     <img  src="panel/<?php echo $c9 ?>"  class="rounded-circle" class="responsive-img" width="40" heigth="20" >
 
     <ul class="navbar-nav">
     	
@@ -38,20 +66,17 @@
         <a class="nav-link " href="perfil.php">&nbsp<span class="icon-home "></span>&nbsp home</a>
       </li>
       <li class="nav-item active">
-         <a class="nav-link" href="productos.php">&nbsp<span class="icon-map"></span>&nbsp Productos</a>
+         <a class="nav-link" href="productos.php">&nbsp<span class="icon-map"></span>&nbsp Servicios</a>
       </li>
-      <li class="nav-item active">
-         <a class="nav-link" href="seguridad.php">&nbsp<span class="icon-aid-kit"></span>&nbsp Protocolos de seguridad</a>
-      </li>
+
       <li class="nav-item active">
         <a class="nav-link " href="mispedidos.php">&nbsp<span class="icon-cart"></span>&nbsp Mis Pedidos</a>
       </li>
       <li class="nav-item active">
         <a class="nav-link " href="micuenta.php">&nbsp<span class=" icon-user-check"></span>&nbsp Mi Cuenta</a>
       </li>
-      <li class="nav-item active">
-        <a class="nav-link  " href="#V2" data-toggle="modal">&nbsp<span class="icon-exit ">&nbsp Salir</a>
-
+       <li class="nav-item active">
+     <a class="nav-link  " href="#V2" data-toggle="modal">&nbsp<span class="icon-exit "> salit</a>
       </li>
 
     </ul>
@@ -76,10 +101,10 @@ if (isset($_SESSION['cliente'])) {
 }
 ?>
 
+<a class="nav-link  " href="#V2" data-toggle="modal">&nbsp<span class="icon-exit "></a>
 
 
-
-          <img  src="panel/<?php echo $c9 ?>"  class="rounded-circle" class="responsive-img" width="40" heigth="20" >
+     
 
           </div>
 
