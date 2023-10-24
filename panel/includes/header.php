@@ -1,4 +1,3 @@
-<?php include('session.php'); ?>
 <!DOCTYPE html>
 <html lang="es" translate="no">
   <head>

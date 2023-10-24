@@ -122,5 +122,4 @@
 
 
 
-<?php mysqli_close($conexion); ?>
 <?php include('includes/footer.php'); ?>

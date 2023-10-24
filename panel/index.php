@@ -1,12 +1,11 @@
 <?php include('includes/header.php'); ?>
 <div class="p-5 text-center">
-<?php include("./../panel/data/conexion.php");?>
 
 
 <h4>PANEL DE CONTROL</h4>
 </div>
 
-<br>
+<br><br>
 <!-- Main CSS -->
 <link rel="stylesheet" href="./stylos/main.css">
 <!-- Ionicons -->
@@ -37,5 +36,5 @@
     </form>
     <div class="MsjAjaxForm"></div>
 
-<?php include "./includes/scripts.php"; ?>
+
 <?php include('includes/footer.php'); ?>

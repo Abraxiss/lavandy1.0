@@ -16,7 +16,7 @@ color: black;
 
 <h4>VENTAS LAVANDY</h4>
 </div>
-
+<br><br>
 
 <!-- Main CSS -->
 <link rel="stylesheet" href="./stylos/main.css">
@@ -69,5 +69,5 @@ color: black;
     </form>
     <div class="MsjAjaxForm"></div>
 
-<?php include "./includes/scripts.php"; ?>
+
 <?php include('includes/footer.php'); ?>

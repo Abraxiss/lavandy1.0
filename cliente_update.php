@@ -1,12 +1,7 @@
 <link rel="stylesheet" href="stylos/stylos.css">
 <link rel="stylesheet" href="./style.css">
 
-
-
 <?php 
-
-
-
 $queryR= "
 SELECT clientes.*, tiendas.TIENDA, perfume.PERFUME
 FROM (clientes LEFT JOIN tiendas ON clientes.ID_TIENDA = tiendas.ID_TIENDA) LEFT JOIN perfume ON clientes.AROMA_PREFERIDO = perfume.ID_PERFUME
@@ -156,5 +151,4 @@ $c10 = $filasR['PERFUME'];
 </div>
 
 
-<?php mysqli_close($conexion); ?>
 <?php include('panel/includes/footer.php'); ?>

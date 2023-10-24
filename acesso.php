@@ -33,5 +33,4 @@
     </form>
     <div class="MsjAjaxForm"></div>
 
-<?php include "./js/scripts.php"; ?>
 <?php include('panel/includes/footer.php'); ?>

@@ -167,5 +167,3 @@ if (!$_GET) {
 	
 
 
-
-<?php mysqli_close($conexion); ?>
