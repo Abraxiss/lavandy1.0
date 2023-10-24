@@ -24,39 +24,6 @@
     <script type="text/javascript" src="datatables/main.js"></script>  
     
 
-<!-- código fecha y hora actual-->  
-         <script>
-function mostrarFechaYHora() {
-  var fechaHoraActual = new Date();
-
-  // Obtener la fecha
-  var dia = ('0' + fechaHoraActual.getDate()).slice(-2);  // Agrega un 0 si es necesario
-  var mes = ('0' + (fechaHoraActual.getMonth() + 1)).slice(-2);  // Agrega un 0 si es necesario
-  var año = fechaHoraActual.getFullYear();
-
-  // Obtener la hora
-  var hora = ('0' + fechaHoraActual.getHours()).slice(-2);  // Agrega un 0 si es necesario
-  var minutos = ('0' + fechaHoraActual.getMinutes()).slice(-2);  // Agrega un 0 si es necesario
-  var segundos = ('0' + fechaHoraActual.getSeconds()).slice(-2);  // Agrega un 0 si es necesario
-
-  // Formatear la fecha y la hora
-  var fechaFormateada = año + '-' + mes + '-' + dia;
-  var horaFormateada = hora + ':' + minutos + ':' + segundos;
-
-  // Mostrar la fecha y la hora en elementos HTML separados
-  document.getElementById('fechapc').innerText =fechaFormateada;
-  document.getElementById('horapc').innerText =horaFormateada;
-}
-
-// Llamar a la función para mostrar la fecha y la hora
-mostrarFechaYHora();
-
-// Actualizar la fecha y la hora cada segundo
-setInterval(mostrarFechaYHora, 1000);
-
-
-
-    </script>
 
 
 

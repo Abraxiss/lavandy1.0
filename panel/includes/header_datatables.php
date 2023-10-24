@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8">
-    <title>OneDelibery.net</title>
+    <title>lavandy</title>
     <link rel="shortcut icon" href="favicon.ico">
     <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <!-- BOOTSTRAP 4 -->
@@ -12,7 +12,7 @@
     
     <!-- FUENTES ICONOS LOCAL -->
     <link rel="stylesheet" href="./../style.css">
-    <link rel="stylesheet" href="stylos/stylosmenu.css">
+
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="datatables/bootstrap/css/bootstrap.min.css">
     <!-- CSS personalizado --> 

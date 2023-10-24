@@ -122,5 +122,4 @@ $query= "SELECT * FROM usuarios WHERE id_user= $id_userup";
 </div>
 
 
-<?php mysqli_close($conexion); ?>
 <?php include('includes/footer.php'); ?>
