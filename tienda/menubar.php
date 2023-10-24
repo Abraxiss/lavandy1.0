@@ -1,5 +1,3 @@
-<?php include('includes/session.php'); ?>
-
 
 <?php
 $hora_pc = "<div id='horapc'></div>";

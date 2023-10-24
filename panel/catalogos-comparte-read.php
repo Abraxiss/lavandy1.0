@@ -1,3 +1,4 @@
+<?php include('includes/session.php'); ?>
 <?php include('includes/header.php'); ?>
 <?php include('menubar.php'); ?>
 <link rel="stylesheet" href="stylos/stylos.css">

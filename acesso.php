@@ -1,4 +1,4 @@
-<?php include('panel/includes/header.php'); ?>
+<?php include('includes/header.php'); ?>
 
 <!-- Main CSS -->
 <link rel="stylesheet" href="./css/main.css">
@@ -7,14 +7,7 @@
 <!-- iCheck -->
 <link rel="stylesheet" href="./css/blue.css">
 
-
-
-
-
-
   <body>
-
-
     
     <form action="valida/valida_cliente.php" method="post" class="AjaxForms MainLogin" data-type-form="login" autocomplete="off">
         <p class="text-center text-muted lead text-uppercase">login</p>

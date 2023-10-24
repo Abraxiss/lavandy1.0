@@ -1,4 +1,5 @@
-<?php include("./../../panel/data/conexion.php"); 
+<?php session_start();
+include("./../../panel/data/conexion.php"); 
 
 
 
@@ -23,7 +24,7 @@ $query="SELECT * FROM usuarios WHERE user_dni= '$user' and user_clave= '$clave' 
 
 if ($numfilas>0) {
 
-@session_start();
+
 
 $id_user=$filas ['id_user']; 
 $n_user=$filas ['user_nombre'];
@@ -34,11 +35,13 @@ $_SESSION['tienda']=$n_tienda;
 $_SESSION['usuario']=$n_user;
 $_SESSION['id_usuario']=$id_user;
 
+
+echo $_SESSION['usuario'];
+
+
 	echo'<script type="text/javascript">
     window.location.href="./../home.php";
     </script>';
-mysqli_close($conexion);
-exit();
 
 
 } else {
@@ -48,7 +51,6 @@ exit();
     </script>';
 
 
-die();
 }
 
 
@@ -58,8 +60,6 @@ die();
     window.location.href="./../index.php";
     </script>';
 
-
-die();
 }
 
 ?>

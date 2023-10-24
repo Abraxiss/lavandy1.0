@@ -1,18 +1,12 @@
+<?php include('includes/header.php'); ?>
+<link rel="shortcut icon" href="./panel/includes/favicon.ico">
+
 <div id="contenedor_carga">
 	<div id="carga"></div>
 </div>
-
-<?php include('panel/includes/header.php'); ?>
 <link rel="stylesheet" href="css/perfil.css">
 <link rel="stylesheet" href="css/load.css">
 <link rel="stylesheet" href="style.css">
-<link rel="shortcut icon" href="./panel/includes/favicon.ico">
-
-
-
-
-
-
 
 	<div class="center ">
 	<img   src="./img/logolavandy.gif" class="img-fluid" class="responsive-img" width="650" heigth="400" >	

@@ -1,3 +1,4 @@
+<?php include('includes/session.php'); ?>
 <?php include('includes/header.php'); ?>
 
 <div class="p-5 text-center">

@@ -1,4 +1,4 @@
-
+<?php include('includes/session.php'); ?>
 
 <?php include('includes/header_datatables.php'); ?>
 <link rel="stylesheet" href="style.css">

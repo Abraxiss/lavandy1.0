@@ -1,5 +1,5 @@
 <?php include("session/sessionup.php"); ?>
-<?php include('panel/includes/header.php'); ?>
+<?php include('includes/header.php'); ?>
 <?php include("panel/data/conexion.php"); ?>
 <?php include("./includes/menubar.php"); ?>
 <link rel="stylesheet" href="css/perfil.css">

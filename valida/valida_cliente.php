@@ -1,4 +1,5 @@
-<?php include("./../panel/data/conexion.php"); 
+<?php @session_start();
+include("./../panel/data/conexion.php"); 
 
 
 
@@ -19,7 +20,7 @@ $query="SELECT * FROM clientes WHERE TELEFONO= '$FONO' ";
 
 if ($numfilas>0) {
 
-@session_start();
+
 	
 $id_cliente=$filas ['ID_CLIENTE'];
 $cliente=$filas ['NOMBRE'];
@@ -46,8 +47,6 @@ exit();
     window.location.href="./../acesso.php";
     </script>';
 
-
-die();
 }
 
 
@@ -58,7 +57,6 @@ die();
     </script>';
 
 
-die();
 }
 
 ?>

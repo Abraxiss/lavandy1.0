@@ -1,4 +1,3 @@
-<?php include('includes/session.php'); ?>
 <style>
   .modal-backdrop {
     position: fixed;

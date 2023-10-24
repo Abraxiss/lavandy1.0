@@ -1,4 +1,4 @@
-<?php include('panel/includes/header.php'); ?>
+<?php include('includes/header.php'); ?>
 <link rel="stylesheet" href="style.css">
 <!-- Main CSS -->
 <link rel="stylesheet" href="./css/main.css">

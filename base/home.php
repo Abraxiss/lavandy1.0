@@ -1,4 +1,6 @@
+<?php include("includes/session.php"); ?>
 <?php include('includes/header.php'); ?>
+
 <?php include('menubar.php'); ?>
 
 <link rel="stylesheet" href="style.css">
@@ -46,7 +48,8 @@ filter: brightness(80%);
       <br><br>
       <div class="menu mm">
         
-        
+        <a href="produccion_read.php" class="btn btn-primary btn-lg btn-block"> <span class="icon-cog "> </span> PRODUCCION </a>
+
         <a href="clientes_read.php" class="btn btn-primary btn-lg btn-block"><span class="icon-users"> </span> CLIENTES</a>
         
         <a href="traslados_read_p.php" class="btn btn-primary btn-lg btn-block"> <span class="icon-truck"> </span> TRASLADOS </a>

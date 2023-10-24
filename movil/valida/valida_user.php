@@ -1,7 +1,5 @@
-<?php include("./../../panel/data/conexion.php"); 
-
-
-
+<?php session_start();
+ include("./../../panel/data/conexion.php"); 
 
 
 if (isset($_POST['usuario'])) {
@@ -21,8 +19,6 @@ $query="SELECT * FROM usuarios WHERE user_dni= '$user' and user_clave= '$clave' 
 	$filas=mysqli_fetch_assoc($result);
 
 if ($numfilas>0) {
-
-@session_start();
 
 $id_user=$filas ['id_user']; 
 $n_user=$filas ['user_nombre'];
@@ -47,7 +43,6 @@ exit();
     </script>';
 
 
-die();
 }
 
 
@@ -58,7 +53,6 @@ die();
     </script>';
 
 
-die();
 }
 
 ?>

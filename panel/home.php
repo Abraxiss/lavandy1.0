@@ -1,3 +1,4 @@
+<?php include('includes/session.php'); ?>
 <?php include('includes/header.php'); ?>
 <?php include('menubar.php'); ?>
 
@@ -36,6 +37,8 @@ filter: brightness(80%);
         <a href="catalogos-create-read.php" class="btn btn-primary btn-lg btn-block">MIS CATÁLOGOS</a>
         
         <a href="articulos-create-read.php" class="btn btn-primary btn-lg btn-block">MIS PRODUCTOS</a>
+
+        <a href="mensajes_read.php" class="btn btn-primary btn-lg btn-block">MENSAJES</a>
         
         <a href="pedidos_read.php" class="btn btn-primary btn-lg btn-block">MIS PEDIDOS</a>  
 
