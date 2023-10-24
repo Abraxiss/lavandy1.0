@@ -1,43 +1,44 @@
-<?php include("./../panel/data/conexion.php"); ?>
-<?php include("./../session/sessionup.php"); ?>
-
+<?php include("../panel/data/conexion.php"); ?>
 
 <?php
 
 
-if (isset($_POST['cl_nombre'])) {
+if (isset($_POST['id_cliente'])) {
 
-    $c1 = $_POST['id_cliente'];
-	  $c2 = $_POST['cl_nombre'];  
-    $c3 = $_POST['cl_email'];
-    $c4 = $_POST['cl_numero'];
-    $c5 = $_POST['cl_clave'];
-    $c6 = $_POST['cl_direccion'];
-    $c7 = $_POST['cl_dni'];
+
+    $ID_CLIENTE= $_POST['id_cliente'];
+    $NOMBRE = $_POST['n_cliente'];
+    $SEXO = $_POST['sexo'];
+    $TELEFONO = $_POST['telefono'];
+    $TIENDA = $_POST['tienda'];
+    $RUC_DNI = $_POST['dniruc'];
+    $DIRECCION = $_POST['direccion'];
+    $PERFUME = $_POST['id_perfume'];
+    $NREFERIDOS = $_POST[ 'referidos'];
+
+/// actualisa tabla
 
   $query = "UPDATE clientes set
 
-cl_nombre ='$c2',
-cl_email ='$c3',
-cl_numero ='$c4',
-cl_clave ='$c5',
-cl_direccion  ='$c6',
-cl_dni  ='$c7'
+  NOMBRE = '$NOMBRE',
+  SEXO = '$SEXO',
+  ID_TIENDA = '$TIENDA',
+  TELEFONO = '$TELEFONO',
+  RUC_DNI = '$RUC_DNI',
+  DIRECCION = '$DIRECCION',
+  AROMA_PREFERIDO = '$PERFUME',
+  NREFERIDOS = '$NREFERIDOS'
 
-  WHERE id_cliente=$c1";
+  WHERE ID_CLIENTE=$ID_CLIENTE";
 
   mysqli_query($conexion, $query);
+
+
 
 }
 
 
 mysqli_close($conexion);
-
-echo'<script>
-    alert("Tu datos fueron actualizados con exito");
-</script>';
-
-
 echo'<script type="text/javascript">
     window.location.href="./../micuenta.php";
     </script>';

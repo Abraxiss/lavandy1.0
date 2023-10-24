@@ -10,23 +10,19 @@
 <?php
 if (isset($_POST['guardar'])) {
 	
-	$dni = $_POST['cl_dni'];
+	$fono = $_POST['cl_numero'];
 	
 
-$query="SELECT cl_dni FROM clientes WHERE cl_dni= '$dni' ";
+$query="SELECT TELEFONO FROM clientes WHERE TELEFONO= '$fono' ";
 	$result=mysqli_query($conexion, $query);
 	$numfilas = mysqli_num_rows($result);
 	$filas=mysqli_fetch_assoc($result);
 
 
-
-
-
-
 if ($numfilas>0) {
 
 echo'<script>
-	alert("El numero de DNI ya se encuantra registrado, verifica el numero ingresado");
+	alert("El numero de TELEFONO ya se encuantra registrado, verifica el numero ingresado");
 </script>';
 
 	echo'<script type="text/javascript">
@@ -38,32 +34,26 @@ exit();
 
 } else {
  
- echo $numfilas ;
-die();
+
 /*-------------------------------------------------*/
 if (isset($_POST['guardar'])) {
 	
 	
 
-	$c2 = $_POST['cl_nombre'];
-	$c4 = $_POST['cl_numero'];
-	$c5 = $_POST['cl_clave'];
-	$c7 = $_POST['cl_dni'];
+	$NOMBRE = $_POST['cl_nombre'];
+	$TELEFONO = $_POST['cl_numero'];
+
 	
 
 
 /*---KKIK---*/
 $query= "INSERT INTO clientes(  
  
-cl_nombre,
-cl_numero,
-cl_clave,
-cl_dni
+NOMBRE,
+TELEFONO
 ) VALUES (
-'$c2',
-'$c4',
-'$c5',
-'$c7'
+'$NOMBRE',
+'$TELEFONO'
 )";
 
 /*---create ---*/

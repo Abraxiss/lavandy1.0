@@ -2,9 +2,6 @@
 include("./../../panel/data/conexion.php"); 
 
 
-
-
-
 if (isset($_POST['usuario'])) {
 	
 	$user = $_POST['usuario'];
@@ -34,10 +31,6 @@ $_SESSION['id_tienda']=$idtienda;
 $_SESSION['tienda']=$n_tienda;
 $_SESSION['usuario']=$n_user;
 $_SESSION['id_usuario']=$id_user;
-
-
-echo $_SESSION['usuario'];
-
 
 	echo'<script type="text/javascript">
     window.location.href="./../home.php";

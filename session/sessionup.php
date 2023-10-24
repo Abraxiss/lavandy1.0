@@ -9,8 +9,6 @@ if (isset($_SESSION['cliente'])) {
 
 } else {
 
-
-
 }
 ?>
 
