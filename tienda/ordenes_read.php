@@ -41,8 +41,7 @@
     <div class="form-row">
      <div class="col-10"> 
 		<label for="id_cliente">Cliente:</label>
-    <input class="form-control" list="cliente" id="id_cliente" name="id_cliente" required>
-    <datalist id="cliente" >
+    <select class="custom-select" id="cliente" name="id_cliente" required>
     <option selected></option>
     <?php 
       $query="SELECT *FROM clientes ";
@@ -54,9 +53,10 @@
       <?php echo $filas ['TELEFONO']  ?>  <?php echo $filas ['NOMBRE']  ?>
     </option>
     <?php } ?>
+    </select>
+  	</div>
 
-  	</datalist>
-		</div>
+
 <div class="col">
     <a href="clientes_read.php" class="btn btn-block btn-warning " style="margin-top: 30px;"> 
         <span class="icon-user-plus"></span>
@@ -65,6 +65,8 @@
 
 <br>
     </div>
+
+
     <div class="form-row">
       <div class="col">
         <label for="fecha_inicio">Fecha de Inicio:</label>
@@ -72,7 +74,7 @@
       </div>
       <div class="col">
         <label for="hora_inicio">Hora de Inicio:</label>
-				<input value="" type="time" class="form-control" id="hora_inicio" name="hora_inicio" required>
+				<input value="<?php echo $hora_serv ; ?>" type="time" class="form-control" id="hora_inicio" name="hora_inicio" required>
 				</div>
     </div>
 
@@ -180,10 +182,11 @@
 <br>
 
 	<?php 
-	$queryR="SELECT ordenes.TOTAL_VTA, ordenes.ID_ORD, ordenes.N_ORD, clientes.NOMBRE, clientes.TELEFONO , clientes.ID_CLIENTE, ordenes.FECHA_INICIO, ordenes.HORA_INICIO, ordenes.FECHA_ENTREGA, ordenes.HORA_ENTREGA, ordenes.SALDO, ordenes.ID_TIENDA, tiendas.ABREV, tiendas.TIENDA
-FROM (clientes INNER JOIN ordenes ON clientes.ID_CLIENTE = ordenes.ID_CLIENTE) INNER JOIN tiendas ON ordenes.ID_TIENDA = tiendas.ID_TIENDA
+	$queryR="SELECT ordenes.TOTAL_VTA, ordenes.ID_ORD, ordenes.N_ORD, clientes.NOMBRE, clientes.TELEFONO, clientes.ID_CLIENTE, ordenes.FECHA_INICIO, ordenes.HORA_INICIO, ordenes.FECHA_ENTREGA, ordenes.HORA_ENTREGA, ordenes.SALDO, ordenes.ID_TIENDA, tiendas.ABREV, tiendas.TIENDA
+FROM (clientes RIGHT JOIN ordenes ON clientes.ID_CLIENTE = ordenes.ID_CLIENTE) INNER JOIN tiendas ON ordenes.ID_TIENDA = tiendas.ID_TIENDA
 WHERE (((ordenes.ID_TIENDA)='$idtiendaup'))
-ORDER BY ordenes.ID_ORD DESC ";
+ORDER BY ordenes.ID_ORD DESC;
+";
 	$resultR=mysqli_query($conexion, $queryR);
  	
 

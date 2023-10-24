@@ -1,6 +1,4 @@
 <?php include('includes/header.php'); ?>
-<link rel="shortcut icon" href="favicon00.ico">
-
 <div id="contenedor_carga">
 	<div id="carga"></div>
 </div>
