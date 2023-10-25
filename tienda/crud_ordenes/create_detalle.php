@@ -14,7 +14,7 @@ if (isset($_POST['guardar'])) {
     $PRECIO_UNITARIO = $_POST['precio_unitario'];
     $PRECIO_TOTAL = $CANTIDA * $PRECIO_UNITARIO;
     $OBSERVACION_DTLL = $_POST['observacion_dtll'];
-    $STAD_PROD= 1;
+    $STADO_LAVADO= 1;
 
 
 if ($TIPO_VTA=="KILO") {
@@ -40,7 +40,7 @@ $query= "INSERT INTO detallesdeord(
         STADO_PREN,
         PRECIO_UNITARIO,
         PRECIO_TOTAL,
-        STAD_PROD,
+        STADO_LAVADO,
         OBSERVACION_DTLL
 
     ) VALUES (
@@ -52,7 +52,7 @@ $query= "INSERT INTO detallesdeord(
         '$STADO_PREN',
         '$PRECIO_UNITARIO',
         '$PRECIO_TOTAL',
-        '$STAD_PROD',
+        '$STADO_LAVADO',
         '$OBSERVACION_DTLL'
     )";
 

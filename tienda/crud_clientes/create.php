@@ -7,7 +7,7 @@ if (isset($_POST['telefono'])) {
 	$TELEFONO = $_POST['telefono'];
 	
 
-	$query="SELECT * FROM clientes WHERE TELEFONO= '$TELEFONO' ";
+	$query="SELECT * FROM clientes WHERE TELEFONO == '$TELEFONO' ";
 	$result=mysqli_query($conexion, $query);
 	$numfilas = mysqli_num_rows($result);
 	

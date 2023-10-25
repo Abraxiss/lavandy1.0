@@ -66,11 +66,11 @@ $n_perfume = $filas ['PERFUME'];
     <div class="form-row">
       <div class="col">
         <label for="fecha_inicio">Fecha de Inicio:</label>
-        <input type="date" class="form-control" id="fecha_inicio" name="fecha_inicio" required>
+        <input value="<?php echo $fecha_serv ; ?>" type="date" class="form-control" id="fecha_inicio" name="fecha_inicio" required>
       </div>
       <div class="col">
         <label for="hora_inicio">Hora de Inicio:</label>
-        <input type="time" class="form-control" id="hora_inicio" name="hora_inicio" required>
+        <input value="<?php echo $hora_serv ; ?>" type="time" class="form-control" id="hora_inicio" name="hora_inicio" required>
         </div>
     </div>
 
