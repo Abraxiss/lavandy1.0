@@ -1,4 +1,3 @@
-<?php include('includes/session.php'); ?>
 <?php include('includes/header.php'); ?>
 <link rel="stylesheet" href="style.css">
 <?php include("data/conexion.php"); ?>

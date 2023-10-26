@@ -57,5 +57,5 @@ color: white;
     </form>
     <div class="MsjAjaxForm"></div>
 
-<?php include "./includes/scripts.php"; ?>
+
 <?php include('includes/footer.php'); ?>

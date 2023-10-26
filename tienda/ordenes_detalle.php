@@ -12,7 +12,7 @@
 if (isset($_GET['id'])) {
 $ID_ORD=$_GET['id'];
 
-  $queryo="SELECT ordenes.ID_ORD, ordenes.*, usuarios.user_nick, tiendas.ABREV, clientes.NOMBRE, clientes.TELEFONO, clientes.DIRECCION, tipolavados.LAVADO, perfume.PERFUME, forma_pagos.FORMAPAGO, estatus_orden.ST_ORD
+  $queryo="SELECT ordenes.ID_ORD, ordenes.*, usuarios.user_nick, tiendas.ABREV, clientes.NOMBRE, clientes.TELEFONO, clientes.DIRECCION, tipolavados.LAVADO, perfume.PERFUME, forma_pagos.FORMAPAGO, estatus_orden.ST_ORD, tiendas.TIENDA
 FROM ((((((ordenes INNER JOIN tiendas ON ordenes.ID_TIENDA = tiendas.ID_TIENDA) INNER JOIN perfume ON ordenes.ID_PERFUME = perfume.ID_PERFUME) INNER JOIN clientes ON ordenes.ID_CLIENTE = clientes.ID_CLIENTE) INNER JOIN tipolavados ON ordenes.ID_LAVADO = tipolavados.ID_LAVADO) INNER JOIN usuarios ON ordenes.ID_USER = usuarios.id_user) LEFT JOIN forma_pagos ON ordenes.FORMA_PAGO = forma_pagos.ID_FP) INNER JOIN estatus_orden ON ordenes.STATUS_ORD = estatus_orden.ID_ST_ORD
 WHERE (((ordenes.ID_ORD)='$ID_ORD'))";
 
@@ -21,7 +21,6 @@ $filaso=mysqli_fetch_assoc($resulto);
 
 }
 ?>
-
 
 <!-- CARD -->
 <div class="card text-center">
@@ -408,7 +407,6 @@ WHERE (((detallesdeord.ID_ORD)='$ID_ORD'))
       <input type="number" value="<?php echo $filaso ['N_ORD']?>" class="form-control" id="n_ord" name="n_ord" required>
     </div>
 
-
     <div class="form-group">
     <label for="id_cliente">Cliente:</label>
     <select class="custom-select" id="id_cliente" name="id_cliente" required>
@@ -494,18 +492,33 @@ WHERE (((detallesdeord.ID_ORD)='$ID_ORD'))
 
 
     <div class="form-row">
-
+<div class="col">
     <label for="adomicilio">Entrega a Domicilio:</label>
     <select class="custom-select" id="adomicilio" name="adomicilio" required>
     <option selected value="<?php echo $filaso ['ADOMICILIO']?>"> <?php echo $filaso ['ADOMICILIO']  ?> </option>
     <option value="si" > si </option>         
     <option value="no" > no </option>
     </select>
+</div>
 
-    </div>
-  
+ <div class="col"> 
+    <label for="horarios_movil">Tienda:</label>
+    <select class="custom-select" id="horarios_movil" name="horarios_movil" required>
+    <option selected value="<?php echo $filaso ['ID_TIENDA']?>"><?php echo $filaso ['TIENDA']  ?></option>
+    <?php 
+      $query="SELECT *FROM  tiendas ";
+      $result=mysqli_query($conexion, $query);
+    ?>
+    <?php while($filas=mysqli_fetch_assoc($result)) { ?>
+      
+    <option value="<?php echo $filas ['ID_TIENDA']?>" >
+      <?php echo $filas ['TIENDA']  ?>
+    </option>
+    <?php } ?>
 
-
+    </select>
+  </div>
+  </div>
 
     <button type="submit" id="guardar" name="guardar" class="btn btn-primary btn-lg btn-block mt-3">GUARDAR</button>
   </form>

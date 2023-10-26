@@ -15,6 +15,10 @@
   <span class="icon-price-tags"></span> NUEVA ORDEN
 </button>
 
+  <button style="float: right;margin-top: 20px;"  type="button" class="btn btn-success" data-toggle="modal" data-target="#buscar" > 
+    <span class="icon-price-tags"></span> BUSCAR ORDEN
+  </button>
+
 <!-- Modal -->
 <div class="modal fade" id="norden" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
@@ -31,11 +35,14 @@
 
   	<input value="<?php echo $idtiendaup ?>" id="id_tienda" name="id_tienda" type="hidden" >
   	<input value="<?php echo $id_userup ?>" id="id_user" name="id_user" type="hidden" >
+
+
         
 		<div class="form-group">
       <label for="n_ord">Número de Orden:</label>
       <input type="number" class="form-control" id="n_ord" name="n_ord" required>
     </div>
+
 
 
     <div class="form-row">
@@ -247,7 +254,39 @@ ORDER BY ordenes.ID_ORD DESC;
 </table>
                     
 
+<!-- Modal -->
+<div class="modal fade" id="buscar" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Buscar orden de servicio</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="container mt-2">
+  <form action="buscaord.php" method="post"> 
 
+
+    <div class="form-group">
+      <label for="orden">Ingrese el Numero de orden</label>
+      <input type="number" class="form-control" id="orden" name="orden" required>
+    </div>
+
+
+    <button type="submit" id="guardar" name="guardar" class="btn btn-primary btn-lg btn-block mt-3">BUSCAR</button>
+  </form>
+</div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">CERRAR</button>      
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal -->
   
 
 <?php include('includes/footer_datatables.php'); ?>

@@ -48,7 +48,7 @@ filter: brightness(80%);
       <br><br>
       <div class="menu mm">
         
-        <a href="produccion_read.php" class="btn btn-primary btn-lg btn-block"> <span class="icon-cog "> </span> PRODUCCION </a>
+        <a href="produccion_read.php?s=1" class="btn btn-primary btn-lg btn-block"> <span class="icon-cog "> </span> PRODUCCION </a>
 
         <a href="clientes_read.php" class="btn btn-primary btn-lg btn-block"><span class="icon-users"> </span> CLIENTES</a>
         

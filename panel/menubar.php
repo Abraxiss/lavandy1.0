@@ -54,20 +54,19 @@ color: #49257C;
        
          <a class="nav-link" href="home.php"><span class="icon-home"> </span> HOME</a>
       </li>    	
-      
+      <li class="nav-item active">
+       
+         <a class="nav-link" href="tablas.php"> DATA</a>
+      </li> 
+
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           TABLAS
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          
           <a class="dropdown-item" 
-          href="form_create_read.php?&t=estatus_orden">STATUS ORDEN</a>
-          <a class="dropdown-item" 
-          href="form_create_read.php?t=estatus_produc">STATUS PRODUCC</a>
-          <a class="dropdown-item" 
-          href="form_create_read.php?t=estatus_tras">STATUS MOVIL</a>
-          <div class="dropdown-divider"></div>
+          href="form_create_read.php?&t=lavandy_datos">lavandy_datos</a>
+<div class="dropdown-divider"></div>
           <a class="dropdown-item" 
           href="form_create_read.php?t=forma_pagos">FORMA DE PAGOS</a>
           <a class="dropdown-item" 
@@ -77,15 +76,16 @@ color: #49257C;
           <a class="dropdown-item" 
           href="form_create_read.php?t=ccosto">CETRO DE COSTOS</a>
           <a class="dropdown-item" 
-          href="form_create_read.php?t=perfil_user">PERFIL USER</a>          
+          href="form_create_read.php?t=perfil_user">PERFIL USER</a>
+<div class="dropdown-divider"></div>
           <a class="dropdown-item" 
-          href="form_create_read.php?t=tipolavados">TIPO DE LAVADO</a>
+          href="form_create_read.php?t=procesos">PROCESOS</a>          
           <a class="dropdown-item" 
-          href="form_create_read.php?t=tipo_mensajes">TIPO DE MENSAJES</a>
+          href="form_create_read.php?t=metodos">METODOS</a>
           <a class="dropdown-item" 
-          href="form_create_read.php?t=tipo_operacion">TIPO DE OPERACION</a>
+          href="form_create_read.php?t=secuencias">SECUENCIAS</a>
           <a class="dropdown-item" 
-          href="form_create_read.php?t=tipo_traslado">TIPO DE TRASLADO</a>
+          href="form_create_read.php?&t=pcge">PLAN CONTABLE</a> 
         </div>
       </li>
 
