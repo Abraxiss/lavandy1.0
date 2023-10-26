@@ -44,6 +44,8 @@
         <option value="3" > ENTREGAS A RENDIR  </option>
         <option value="4" > ENTREGA A CAJA CENTRAL  </option>
         <option value="5" > GASTOS DIVERSOS </option>
+        <option value="6" > DEPOSITOS DIVERSOS </option>
+        <option value="7" > RETIROS DIVERSOS </option>
         </select> 
 
 </div>

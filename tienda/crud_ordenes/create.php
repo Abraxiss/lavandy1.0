@@ -124,9 +124,9 @@ $result = mysqli_query($conexion, $query);
 
 /*---redireccion ---*/
 mysqli_close($conexion);    
-echo'<script type="text/javascript">
-    window.location.href="./../ordenes_read.php";
-    </script>';
+echo '<script type="text/javascript">
+    window.location.href = "./../ordenes_detalle.php?id=' . $ID_ORD . '";
+</script>';
 
 exit();
 

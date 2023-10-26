@@ -91,6 +91,33 @@ $result = mysqli_query($conexion, $query);
 
         break;
 
+    case 6:
+        /*---DEPOSITO DIVERSOS ---*/
+$query = "INSERT INTO 
+diario (ID_USER, ID_TDA, FECHA_R, ID_ORD, TIPO_OPERACION,  CCOSTO,  GLOSA,       CTA_CONTABLE,    DEBE, HABER, SALDO)
+VALUES ('$ID_USER','$ID_TND','$FECHAR','$ID_ORD',10 ,        1,  '$GLOSA',   '$CTA' , '$IMPORTE',  0,   '$IMPORTE')";
+$result = mysqli_query($conexion, $query);
+
+$query = "INSERT INTO 
+diario (ID_USER, ID_TDA, FECHA_R, ID_ORD, TIPO_OPERACION, CCOSTO,  GLOSA,       CTA_CONTABLE,    DEBE, HABER, SALDO)
+VALUES ('$ID_USER','$ID_TND','$FECHAR','$ID_ORD', 10 ,      1,  '$GLOSA',  10211 ,  0, '$IMPORTE', '$IMPORTE'*-1)";
+$result = mysqli_query($conexion, $query);
+
+        break;
+    case 7:
+        /*---RETIROS DIVERSOS ---*/
+$query = "INSERT INTO 
+diario (ID_USER, ID_TDA, FECHA_R, ID_ORD, TIPO_OPERACION,  CCOSTO,  GLOSA,       CTA_CONTABLE,    DEBE, HABER, SALDO)
+VALUES ('$ID_USER','$ID_TND','$FECHAR','$ID_ORD',11 ,        1,  '$GLOSA',   10211 , '$IMPORTE',  0,   '$IMPORTE')";
+$result = mysqli_query($conexion, $query);
+
+$query = "INSERT INTO 
+diario (ID_USER, ID_TDA, FECHA_R, ID_ORD, TIPO_OPERACION, CCOSTO,  GLOSA,       CTA_CONTABLE,    DEBE, HABER, SALDO)
+VALUES ('$ID_USER','$ID_TND','$FECHAR','$ID_ORD', 11 ,      1,  '$GLOSA',   '$CTA',  0, '$IMPORTE', '$IMPORTE'*-1)";
+$result = mysqli_query($conexion, $query);
+        break;
+
+
 }
 
 }
