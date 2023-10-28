@@ -17,7 +17,7 @@ $HORA_ENTREGA=$_POST['hora_entrega'];
 $ID_LAVADO=$_POST['id_lavado'];
 $ID_PERFUME=$_POST['id_perfume'];
 $ADOMICILIO=$_POST['adomicilio'];
-
+$OBS_ORD=$_POST['obs_ord'];
 
 /// actualisa tabla
 
@@ -33,6 +33,7 @@ $ADOMICILIO=$_POST['adomicilio'];
   HORA_ENTREGA= '$HORA_ENTREGA',
   ID_LAVADO= '$ID_LAVADO',
   ID_PERFUME= '$ID_PERFUME',
+  OBS_ORD= '$OBS_ORD',
   ADOMICILIO= '$ADOMICILIO'
 
   WHERE ID_ORD=$ID_ORD";

@@ -1,9 +1,9 @@
 <?php  
   $queryR="
-SELECT detallesdeord.ID_DETALLE, detallesdeord.ID_ORD, tiendas.ABREV, ordenes.N_ORD, detallesdeord.DESCRIPCION, ordenes.FECHA_ENTREGA, ordenes.HORA_ENTREGA, detallesdeord.STADO_LAVADO, estatus_lavado.st_lavado
-FROM ((detallesdeord INNER JOIN ordenes ON detallesdeord.ID_ORD = ordenes.ID_ORD) INNER JOIN tiendas ON ordenes.ID_TIENDA = tiendas.ID_TIENDA) INNER JOIN estatus_lavado ON detallesdeord.STADO_LAVADO = estatus_lavado.id_st_lavado
-WHERE (((detallesdeord.STADO_LAVADO)=1))
-ORDER BY detallesdeord.ID_ORD DESC;
+SELECT ordenes.ID_ORD, tiendas.ABREV, ordenes.N_ORD, ordenes.FECHA_INICIO, ordenes.HORA_INICIO, ordenes.FECHA_ENTREGA, ordenes.HORA_ENTREGA, estatus_lavado.st_lavado, estatus_lavado.Alcance, estatus_lavado.id_st_lavado, ordenes.TOTAL_KILOS, ordenes.TOTAL_PRENDAS, ordenes.OBS_ORD
+FROM (ordenes INNER JOIN tiendas ON ordenes.ID_TIENDA = tiendas.ID_TIENDA) INNER JOIN estatus_lavado ON ordenes.STATUS_LAVADO = estatus_lavado.id_st_lavado
+WHERE (((estatus_lavado.id_st_lavado)=1));
+
 
 ";
   $resultR=mysqli_query($conexion, $queryR);
@@ -14,10 +14,10 @@ ORDER BY detallesdeord.ID_ORD DESC;
 
   <thead  class="thead-dark">
     <tr>
-      <th scope="col">PRENDA </th>
       <th scope="col">ORDEN</th>
-      <th scope="col">FECHA ENTREGA</th>
-      <th scope="col"> ESTADO </th>
+      <th scope="col">CONTENIDO</th>
+      <th scope="col">FECHAS </th>
+      <th scope="col"> OBSERVACION </th>
       <th scope="col">CONFIRMAR</th>
 
     </tr>
@@ -27,32 +27,33 @@ ORDER BY detallesdeord.ID_ORD DESC;
       <?php while($filasR=mysqli_fetch_assoc($resultR)) { ?>
       <tr> 
 
-          <th>
-            <?php echo $filasR ['DESCRIPCION'] ?>
-
+          <th scope="row">
+          <a type="button" class="btn btn-primary" href="./ordenes_detalle.php?id=<?php echo $filasR ['ID_ORD']  ?>" > 
+          <span class="icon-price-tags"></span>           
+           <?php echo $filasR ['ABREV']  ?> -
+           <?php echo $filasR ['N_ORD']  ?>
+          </a> 
 
           </th> 
-
-          <td scope="row">
-           <?php echo $filasR ['ABREV']  ?>-
-           <?php echo $filasR ['N_ORD']  ?>
+          <td >
+           KG:<?php echo $filasR ['TOTAL_KILOS']  ?> <br>
+           UND:<?php echo $filasR ['TOTAL_PRENDAS']  ?> 
              
+          </td>
+          <td >
+           F.INICIO: <?php echo $filasR ['FECHA_INICIO']  ?>-
+           <?php echo $filasR ['HORA_INICIO']  ?><br>
+           F.ENTREGA: <?php echo $filasR ['FECHA_ENTREGA']  ?>-
+           <?php echo $filasR ['HORA_ENTREGA']  ?> 
           </td>
 
           <td>
-           <?php echo $filasR ['FECHA_ENTREGA']  ?>-
-           <?php echo $filasR ['HORA_ENTREGA']  ?>
+           <?php echo $filasR ['OBS_ORD']  ?>
           </td>
-
-           <td>
-          
-           <?php echo $filasR ['st_lavado']  ?>
-          </td>
-   
 
 
       <td> 
-          <a href="crud_produccion/apendiente.php?id=<?php echo $filasR['ID_DETALLE']?>&io=<?php echo $filasR['ID_ORD']?>" class="btn btn-primary"> 
+          <a href="crud_produccion/apendiente.php?id=<?php echo $filasR['ID_ORD']?>" class="btn btn-primary"> 
           <span class="icon-checkmark"></span>
           </a> 
 

@@ -6,22 +6,23 @@
 
 if (isset($_GET['id'])) {
 $ID_TRASLADO=$_GET['id'];
+$ID_ORD=$_GET['ord'];
 
 /// actualisa tabla
-
-  $query = "UPDATE traslado set 
-
+  $query = "UPDATE traslado set
     ID_STATUS_TRAS= 2,
-    FECHA_RECOJO= NOW()
-    
+    FECHA_RECOJO= NOW()    
 /*---FECHA_ENTREGA= NOW()---*/
-
   WHERE ID_TRASLADO=$ID_TRASLADO";
+  mysqli_query($conexion, $query);
 
+/// actualisa tabla
+  $query = "UPDATE ordenes set
+    STATUS_ORD =3    
+  WHERE ID_ORD=$ID_ORD";
   mysqli_query($conexion, $query);
 
 
-mysqli_close($conexion);
 /*---redireccion ---*/
  ?>   
 <meta http-equiv="refresh" 

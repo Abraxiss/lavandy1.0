@@ -114,9 +114,11 @@ switch ($sta) {
            <?php echo $filasR ['TDAD']  ?>
            
            <br>
-           <span class="icon-price-tags"> </span>
+          <a href="./ordenes_detalle.php?id=<?php echo $filasR ['ID_ORD']  ?>" > 
+          <span class="icon-price-tags"></span>           
            <?php echo $filasR ['ABREV']  ?> -
-           <?php echo $filasR ['N_ORD']  ?> 
+           <?php echo $filasR ['N_ORD']  ?>
+          </a>  
           </td>
 
            <td>
@@ -138,18 +140,16 @@ switch ($sta) {
 
 
       <td> 
-          <a href="./crud_traslados/apendiente.php?id=<?php echo $filasR ['ID_TRASLADO']  ?>" class="btn btn-success"> 
+          <a href="./crud_traslados/apendiente.php?id=<?php echo $filasR ['ID_TRASLADO']  ?>&ord=<?php echo $filasR ['ID_ORD']  ?>" class="btn btn-success"> 
           <span class="icon-truck"></span>
           </a> 
-          <a href="./crud_traslados/atransito.php?id=<?php echo $filasR ['ID_TRASLADO']  ?>" class="btn btn-warning"> 
+          <a href="./crud_traslados/atransito.php?id=<?php echo $filasR ['ID_TRASLADO']  ?>&ord=<?php echo $filasR ['ID_ORD']  ?>" class="btn btn-warning"> 
           <span class="icon-road"></span>
           </a> 
           <a href="./crud_traslados/aentregado.php?id=<?php echo $filasR ['ID_TRASLADO']  ?>&ord=<?php echo $filasR ['ID_ORD']  ?>"  class="btn btn-primary"> 
-          <span class="icon-checkbox-checked "></span>
+          <span class="icon-box-add"></span>
           </a> 
-          <a href="./ordenes_detalle.php?id=<?php echo $filasR ['ID_ORD']  ?>"  class="btn btn-dark"> 
-          <span class="icon-checkbox-checked "></span>
-          </a> 
+
       </td>
       </tr>
     <?php } ?>

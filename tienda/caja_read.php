@@ -40,12 +40,14 @@
         <option selected ></option>
       
         <option value="1" > SALDO INICIAL  </option>
-        <option value="2" >  INGRESOS DIVERSOS </option>        
+        <option value="2" > INGRESOS DIVERSOS </option>        
         <option value="3" > ENTREGAS A RENDIR  </option>
         <option value="4" > ENTREGA A CAJA CENTRAL  </option>
+        <option value="6" > RETIRO DE CLIENTE </option>
+        <option value="7" > RECARGA DE CLIENTE </option>
+        <option value="6" > CAJA A BANCO </option>
+        <option value="7" > BANCO A CAJA </option>
         <option value="5" > GASTOS DIVERSOS </option>
-        <option value="6" > DEPOSITOS DIVERSOS </option>
-        <option value="7" > RETIROS DIVERSOS </option>
         </select> 
 
 </div>
@@ -109,10 +111,12 @@
   <?php 
     $queryR="
 
-SELECT diario.ID_DIARIO, diario.FECHA_OP, diario.ID_ORD, ordenes.ID_USER, usuarios.user_nick, ordenes.N_ORD, tiendas.ABREV, diario.TIPO_OPERACION AS ID_TIPO, tipo_operacion.NTIPO_OPERACION, diario.CCOSTO, ccosto.N_CCOSTO, diario.GLOSA, pcge.TRESDIGITOS, diario.DEBE, diario.HABER, diario.SALDO, diario.ID_TDA, ordenes.ID_CLIENTE
+SELECT diario.ID_DIARIO, diario.FECHA_OP, diario.ID_ORD, ordenes.ID_USER, usuarios.user_nick, ordenes.N_ORD, tiendas.ABREV, diario.TIPO_OPERACION AS ID_TIPO, tipo_operacion.NTIPO_OPERACION, diario.CCOSTO, ccosto.N_CCOSTO, diario.GLOSA, pcge.TRESDIGITOS, diario.DEBE, diario.HABER, diario.SALDO, diario.ID_TDA, ordenes.ID_CLIENTE, pcge.CTA_CONT
 FROM (((((diario LEFT JOIN ordenes ON diario.ID_ORD = ordenes.ID_ORD) INNER JOIN tipo_operacion ON diario.TIPO_OPERACION = tipo_operacion.ID_TIPOOP) INNER JOIN ccosto ON diario.CCOSTO = ccosto.ID_CCOSTO) INNER JOIN pcge ON diario.CTA_CONTABLE = pcge.ID_CTA) INNER JOIN tiendas ON diario.ID_TDA = tiendas.ID_TIENDA) INNER JOIN usuarios ON diario.ID_USER = usuarios.id_user
 WHERE (((pcge.TRESDIGITOS)=101) AND ((diario.SALDO)<>0) AND ((diario.ID_TDA)='$idtiendaup'))
 ORDER BY diario.ID_DIARIO DESC;
+
+
 
 
 
@@ -132,6 +136,7 @@ ORDER BY diario.ID_DIARIO DESC;
       <th scope="col">ORDEN</th>
       
       <th scope="col">GLOSA</th>
+      <th style="text-align: right;">F. PAGO</th>
       <th style="text-align: right;">INGRESO</th>
       <th style="text-align: right;">SALIDA</th>
       <th style="text-align: right;">SALDO</th>
@@ -168,6 +173,9 @@ ORDER BY diario.ID_DIARIO DESC;
            <?php echo $filasR ['GLOSA']  ?>
       </td>
       <td style="text-align: right;"> 
+      <?php echo $filasR ['CTA_CONT']  ?>
+      </td>      
+      <td style="text-align: right;"> 
       <?php echo $filasR ['DEBE']  ?>
       </td>
       <td style="text-align: right;"> 
@@ -182,7 +190,10 @@ ORDER BY diario.ID_DIARIO DESC;
       <td style="text-align: center;"> 
           <a href="ordenes_detalle.php?id=<?php echo $filasR ['ID_ORD']?>" class="btn btn-dark"> 
           <span class="icon-price-tags"></span>
-          </a> 
+          </a>
+          <a href="crud_diario/delete_caja.php?d=<?php echo $filasR ['ID_DIARIO'] ?>&o=<?php echo $filasR ['ID_ORD'] ?>&x=1" class="btn btn-danger" > 
+          <span class="icon-bin"></span>
+          </a>           
       </td>
     <?php } ?>
 
@@ -200,6 +211,7 @@ HAVING (((pcge.TRESDIGITOS)=101) AND ((diario.ID_TDA)='$idtiendaup'));
 
 
   <tr style="background-color: black; color: white;">
+  <td></td>
   <td></td>
   <td></td>
   <td></td>
@@ -289,6 +301,7 @@ HAVING (((ordenes.ID_TIENDA)='$idtiendaup'));
   $queryCC="SELECT ordenes.ID_ORD, ordenes.ID_TIENDA, tiendas.ABREV, ordenes.N_ORD, ordenes.ID_CLIENTE, clientes.NOMBRE, ordenes.SALDO
 FROM (ordenes INNER JOIN clientes ON ordenes.ID_CLIENTE = clientes.ID_CLIENTE) INNER JOIN tiendas ON ordenes.ID_TIENDA = tiendas.ID_TIENDA
 WHERE (((ordenes.ID_TIENDA)='$idtiendaup') AND ((ordenes.SALDO)<>0))
+ORDER BY ordenes.SALDO DESC
 LIMIT 0, 5;
 ";
   $resultCC=mysqli_query($conexion, $queryCC);

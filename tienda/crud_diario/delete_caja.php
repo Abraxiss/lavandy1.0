@@ -20,11 +20,21 @@ $query= "DELETE FROM diario WHERE FECHA_OP= '$FECHADELETE'";
 /*---ejecuta ---*/
 $result = mysqli_query($conexion, $query);
 
-mysqli_close($conexion);
+
+if (isset($_GET['x'])) {
+	$X= $_GET['x'];
+ ?>     
+<meta http-equiv="refresh" 
+      content="0;url=../crud_ordenes/update_importes.php?id=<?php echo $ID_ORD ?>&x=<?php echo $X ?>" />
+<?php 
+
+} else {
  ?>     
 <meta http-equiv="refresh" 
       content="0;url=../crud_ordenes/update_importes.php?id=<?php echo $ID_ORD ?>" />
 <?php 
+}
+
 
 
 exit();

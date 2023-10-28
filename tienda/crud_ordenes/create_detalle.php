@@ -13,9 +13,9 @@ if (isset($_POST['guardar'])) {
     $STADO_PREN = $_POST['status_prod'];
     $PRECIO_UNITARIO = $_POST['precio_unitario'];
     $PRECIO_TOTAL = $CANTIDA * $PRECIO_UNITARIO;
+    $ID_SECUENCIA = 1;
     $OBSERVACION_DTLL = $_POST['observacion_dtll'];
-    $STADO_LAVADO= 1;
-
+    
 
 if ($TIPO_VTA=="KILO") {
    $TOTAL_KILOS = $CANTIDA; 
@@ -40,7 +40,7 @@ $query= "INSERT INTO detallesdeord(
         STADO_PREN,
         PRECIO_UNITARIO,
         PRECIO_TOTAL,
-        STADO_LAVADO,
+        ID_SECUENCIA,
         OBSERVACION_DTLL
 
     ) VALUES (
@@ -52,7 +52,7 @@ $query= "INSERT INTO detallesdeord(
         '$STADO_PREN',
         '$PRECIO_UNITARIO',
         '$PRECIO_TOTAL',
-        '$STADO_LAVADO',
+        '$ID_SECUENCIA',
         '$OBSERVACION_DTLL'
     )";
 
@@ -106,6 +106,7 @@ $PRECIO_TOTAL = $filasS ['SumaDePRECIO_TOTAL'];
      $query2 = "UPDATE ordenes set
         TOTAL_KILOS =$T_KILOS,
         TOTAL_PRENDAS =$T_PRENDAS,
+        STATUS_ORD =2,
         PRECIO = $PRECIO_TOTAL
         
 

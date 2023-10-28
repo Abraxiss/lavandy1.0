@@ -1,5 +1,5 @@
-<?php include("./../../panel/data/conexion.php"); ?>
 <?php include('../includes/session.php'); ?>
+<?php include("./../../panel/data/conexion.php"); ?>
 <?php 
 
 /*---NEW ORDEN---*/

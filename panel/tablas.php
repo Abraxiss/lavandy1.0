@@ -1,5 +1,4 @@
-<?php
-include('includes/session.php');
+<?php include('includes/session.php');
 include('includes/header.php');
 include('menubar.php');
 include("data/conexion.php");
@@ -7,7 +6,7 @@ include("data/conexion.php");
 // Realiza la consulta SQL para obtener información de las tablas en la base de datos 'lavandy'
 $query = "SELECT table_name, engine, table_rows, update_time, data_length, table_comment
           FROM information_schema.tables
-          WHERE table_schema = 'lavandy'";
+          WHERE table_schema = '$database'";
 $result = mysqli_query($conexion, $query);
 ?>
 
@@ -20,7 +19,7 @@ $result = mysqli_query($conexion, $query);
     <tr>      
       <th scope="col">TABLA</th>
       <th scope="col">FILAS</th>
-      <th scope="col">TAMAÑO</th>
+      <th scope="col">PESO BITS</th>
       <th scope="col">ACTUALIZACION</th>
       <th scope="col" ><center><span class=" icon-folder-open "> </span></center> </th>
     </tr>

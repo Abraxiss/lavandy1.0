@@ -1,8 +1,8 @@
 <?php include("./../../panel/data/conexion.php"); ?>
 <?php 
 
-if (isset($_GET['id'])) {
-	$ID_ORD = $_GET['id'];
+if (isset($_POST['id'])) {
+	$ID_ORD = $_POST['id'];
 /*---query elimina---*/
 $query= "DELETE FROM ordenes WHERE ID_ORD= $ID_ORD";
 /*---ejecuta ---*/

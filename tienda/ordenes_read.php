@@ -189,10 +189,13 @@
 <br>
 
 	<?php 
-	$queryR="SELECT ordenes.TOTAL_VTA, ordenes.ID_ORD, ordenes.N_ORD, clientes.NOMBRE, clientes.TELEFONO, clientes.ID_CLIENTE, ordenes.FECHA_INICIO, ordenes.HORA_INICIO, ordenes.FECHA_ENTREGA, ordenes.HORA_ENTREGA, ordenes.SALDO, ordenes.ID_TIENDA, tiendas.ABREV, tiendas.TIENDA
-FROM (clientes RIGHT JOIN ordenes ON clientes.ID_CLIENTE = ordenes.ID_CLIENTE) INNER JOIN tiendas ON ordenes.ID_TIENDA = tiendas.ID_TIENDA
+	$queryR="SELECT ordenes.TOTAL_VTA, ordenes.ID_ORD, ordenes.N_ORD, clientes.NOMBRE, clientes.TELEFONO, clientes.ID_CLIENTE, ordenes.FECHA_INICIO, ordenes.HORA_INICIO, ordenes.FECHA_ENTREGA, ordenes.HORA_ENTREGA, ordenes.SALDO, ordenes.ID_TIENDA, tiendas.ABREV, tiendas.TIENDA, ordenes.OBS_ORD, estatus_orden.ST_ORD
+FROM ((clientes RIGHT JOIN ordenes ON clientes.ID_CLIENTE = ordenes.ID_CLIENTE) INNER JOIN tiendas ON ordenes.ID_TIENDA = tiendas.ID_TIENDA) INNER JOIN estatus_orden ON ordenes.STATUS_ORD = estatus_orden.ID_ST_ORD
 WHERE (((ordenes.ID_TIENDA)='$idtiendaup'))
 ORDER BY ordenes.ID_ORD DESC;
+
+
+
 ";
 	$resultR=mysqli_query($conexion, $queryR);
  	
@@ -210,6 +213,7 @@ ORDER BY ordenes.ID_ORD DESC;
   <thead  class="thead-dark">
     <tr>
       <th scope="col">#ORD</th>
+      <th scope="col">ESTADO</th>
       <th scope="col">FECHA</th>
       <th scope="col">CLIENTE</th>
       <th scope="col">ENTREGA</th>
@@ -221,8 +225,12 @@ ORDER BY ordenes.ID_ORD DESC;
    
     	<?php while($filasR=mysqli_fetch_assoc($resultR)) { ?>
       <tr>       
-      <th scope="row"><?php echo $filasR ['ABREV']  ?>-<?php echo $filasR ['N_ORD']  ?>
+      <th scope="row">
+        <?php echo $filasR ['ABREV']  ?>-<?php echo $filasR ['N_ORD']  ?><br><?php echo $filasR ['OBS_ORD']  ?>
       </th>
+      <td>
+        <?php echo $filasR ['ST_ORD']  ?> 
+      </td>
       <td>
         <?php echo $filasR ['FECHA_INICIO']  ?> 
       	<br><?php echo $filasR ['HORA_INICIO']  ?>

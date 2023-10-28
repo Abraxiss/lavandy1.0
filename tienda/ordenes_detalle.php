@@ -12,9 +12,14 @@
 if (isset($_GET['id'])) {
 $ID_ORD=$_GET['id'];
 
-  $queryo="SELECT ordenes.ID_ORD, ordenes.*, usuarios.user_nick, tiendas.ABREV, clientes.NOMBRE, clientes.TELEFONO, clientes.DIRECCION, tipolavados.LAVADO, perfume.PERFUME, forma_pagos.FORMAPAGO, estatus_orden.ST_ORD, tiendas.TIENDA
-FROM ((((((ordenes INNER JOIN tiendas ON ordenes.ID_TIENDA = tiendas.ID_TIENDA) INNER JOIN perfume ON ordenes.ID_PERFUME = perfume.ID_PERFUME) INNER JOIN clientes ON ordenes.ID_CLIENTE = clientes.ID_CLIENTE) INNER JOIN tipolavados ON ordenes.ID_LAVADO = tipolavados.ID_LAVADO) INNER JOIN usuarios ON ordenes.ID_USER = usuarios.id_user) LEFT JOIN forma_pagos ON ordenes.FORMA_PAGO = forma_pagos.ID_FP) INNER JOIN estatus_orden ON ordenes.STATUS_ORD = estatus_orden.ID_ST_ORD
-WHERE (((ordenes.ID_ORD)='$ID_ORD'))";
+  $queryo="
+SELECT ordenes.ID_ORD, ordenes.*, usuarios.user_nick, tiendas.ABREV, clientes.NOMBRE, clientes.TELEFONO, clientes.DIRECCION, tipolavados.LAVADO, perfume.PERFUME, forma_pagos.FORMAPAGO, estatus_orden.ST_ORD, tiendas.TIENDA, estatus_lavado.st_lavado, estatus_orden.ALCANCE, estatus_lavado.Alcance AS ALCANCELAVADO
+FROM estatus_lavado RIGHT JOIN (((((((ordenes INNER JOIN tiendas ON ordenes.ID_TIENDA = tiendas.ID_TIENDA) INNER JOIN perfume ON ordenes.ID_PERFUME = perfume.ID_PERFUME) INNER JOIN clientes ON ordenes.ID_CLIENTE = clientes.ID_CLIENTE) INNER JOIN tipolavados ON ordenes.ID_LAVADO = tipolavados.ID_LAVADO) INNER JOIN usuarios ON ordenes.ID_USER = usuarios.id_user) LEFT JOIN forma_pagos ON ordenes.FORMA_PAGO = forma_pagos.ID_FP) INNER JOIN estatus_orden ON ordenes.STATUS_ORD = estatus_orden.ID_ST_ORD) ON estatus_lavado.id_st_lavado = ordenes.STATUS_LAVADO
+WHERE (((ordenes.ID_ORD)='$ID_ORD'));
+
+;
+
+";
 
   $resulto=mysqli_query($conexion, $queryo);
 $filaso=mysqli_fetch_assoc($resulto);
@@ -30,9 +35,14 @@ $filaso=mysqli_fetch_assoc($resulto);
     </B></h4>
 
       <div style="text-align: right;">
-  <a href="crud_ordenes/ord_delete.php?id=<?php echo $ID_ORD ?>" style="color: red;">
-    <span class="icon-bin "></span> Eliminar Orden
-  </a>
+
+      <a style="color: blue"  type="button" data-toggle="modal" data-target="#entrega" >
+       <span class="icon-box-remove"></span> Entregar a cliente
+      </a> 
+      &nbsp
+      <a style="color: red;" type="button" data-toggle="modal" data-target="#eliminar">
+        <span class="icon-bin "></span> Eliminar Orden
+      </a>
 </div>
 
   </div>
@@ -92,6 +102,7 @@ $filaso=mysqli_fetch_assoc($resulto);
     <tr>
       <th scope="row">LAVADO</th>
       <td><?php echo $filaso ['LAVADO']?></td>
+
     </tr>
     <tr>
       <th scope="row">PERFUME</th>
@@ -111,10 +122,7 @@ $filaso=mysqli_fetch_assoc($resulto);
       <th scope="row">A DOMICILIO</th>
       <td><?php echo $filaso ['ADOMICILIO']?></td>
     </tr>
-   <tr>
-      <th scope="row">STATUS</th>
-      <td><?php echo $filaso ['ST_ORD']?></td>
-    </tr>
+
     <tr>
       <th scope="row">OBSERVACION</th>
       <td><?php echo $filaso ['OBS_ORD']?></td>
@@ -123,7 +131,10 @@ $filaso=mysqli_fetch_assoc($resulto);
       <th scope="row">VENDEDOR</th>
       <td><?php echo $filaso ['user_nick']?></td>
     </tr>
-
+    <tr>
+      <th scope="row">TIENDA</th>
+      <td><?php echo $filaso ['TIENDA']?></td>
+    </tr>
   </tbody>
 </table>
 
@@ -141,6 +152,18 @@ $filaso=mysqli_fetch_assoc($resulto);
       
        <table class="table table-sm table-striped">
   <tbody>
+    <tr>
+      <th scope="row">STATUS </th>
+      <td><?php echo $filaso ['ST_ORD']?> ( <?php echo $filaso ['ALCANCE']?>) 
+
+      </td>
+      
+    </tr>
+    <tr>
+      <th scope="row">LAVADO </th>
+      <td><?php echo $filaso ['st_lavado']?> ( <?php echo $filaso ['ALCANCELAVADO']?>) </td>
+      
+    </tr>
     <tr>
       <th scope="row">TOTAL_KILOS</th>
       <td><?php echo $filaso ['TOTAL_KILOS']?></td>
@@ -178,11 +201,6 @@ $filaso=mysqli_fetch_assoc($resulto);
       <td><?php echo $filaso ['SALDO']?></td>
     </tr>
 
-
-    <tr>
-      <th scope="row">FORMA DE PAGO</th>
-      <td><?php echo $filaso ['FORMAPAGO']?></td>
-    </tr>
   </tbody>
 </table>
     
@@ -322,9 +340,10 @@ $filaso=mysqli_fetch_assoc($resulto);
 
 <!-- tabla -->
 	<?php 
-	$queryD="SELECT detallesdeord.*, detallesdeord.ID_ORD
-FROM detallesdeord
-WHERE (((detallesdeord.ID_ORD)='$ID_ORD'))
+	$queryD="SELECT detallesdeord.*, detallesdeord.ID_ORD, secuencias.SECUENCIA
+FROM detallesdeord LEFT JOIN secuencias ON detallesdeord.ID_SECUENCIA = secuencias.ID_SECUENCIA
+WHERE (((detallesdeord.ID_ORD)='$ID_ORD'));
+
 ";
 	$resultD=mysqli_query($conexion, $queryD);
  	
@@ -337,6 +356,7 @@ WHERE (((detallesdeord.ID_ORD)='$ID_ORD'))
       <th scope="col">CANTIDA</th>
       <th scope="col">DESCRIPCION</th>
       <th scope="col">ALCANCE</th>
+      <th scope="col">LAVADO</th>
       <th scope="col">P/U</th>
       <th scope="col">TOTAL</th>
       <th scope="col">OPCIONES</th>
@@ -354,9 +374,10 @@ WHERE (((detallesdeord.ID_ORD)='$ID_ORD'))
           <br><?php echo $filasD ['OBSERVACION_DTLL']  ?>
   
       </td>
-      <td>( <?php echo $filasD ['STADO_PREN']  ?> )
-          <br><?php echo $filasD ['COLOR']  ?>
+      <td><?php echo $filasD ['COLOR']  ?> ( <?php echo $filasD ['STADO_PREN']  ?> )
       </td>
+      <td><?php echo $filasD ['SECUENCIA']  ?> 
+      
       <td><?php echo $filasD ['PRECIO_UNITARIO']  ?> 
            
            
@@ -520,6 +541,11 @@ WHERE (((detallesdeord.ID_ORD)='$ID_ORD'))
   </div>
   </div>
 
+    <div class="form-group">
+      <label for="obs_ord">OBSERVACION</label>
+      <input type="text" class="form-control" id="obs_ord" name="obs_ord" >
+    </div>
+
     <button type="submit" id="guardar" name="guardar" class="btn btn-primary btn-lg btn-block mt-3">GUARDAR</button>
   </form>
 </div>
@@ -576,7 +602,7 @@ WHERE (((detallesdeord.ID_ORD)='$ID_ORD'))
         <?php 
           $query="SELECT tipo_operacion.ID_TIPOOP, tipo_operacion.NTIPO_OPERACION
             FROM tipo_operacion
-            WHERE (((tipo_operacion.ID_TIPOOP)>1));
+            WHERE tipo_operacion.ID_TIPOOP IN (2, 3, 4);
             ";
           $result=mysqli_query($conexion, $query);
         ?>
@@ -685,4 +711,89 @@ WHERE (((diario.ID_ORD)='$ID_ORD') AND ((tipo_operacion.ID_TIPOOP)>1) AND ((diar
 </table>
 
 
+<div id="eliminar"  class="modal" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title"><span class="icon-price-tags"></span> ORDEN | <?php echo $filaso ['ABREV']?>-<?php echo $filaso ['N_ORD']?> </h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>¿Estas seguro que desea eliminar la orden ?.
+          </p>
+<style >
+  li {
+  list-style-type: none; /* Elimina los marcadores de lista */
+  margin: 0; /* Elimina el margen predeterminado */
+  padding: 0; /* Elimina el relleno predeterminado */
+}
+
+/* Estilos para el elemento <ul> dentro de <li> */
+li ul {
+  list-style-type: none; /* Elimina los marcadores de lista */
+  margin: 0; /* Elimina el margen predeterminado */
+  padding: 0; /* Elimina el relleno predeterminado */
+}
+
+</style>
+
+<li>
+  <ul>PROCESO:</ul>
+  <ul><span class="icon-spinner">Eliminar Orden y sus detalles...</span></ul>
+  <ul><span class="icon-spinner">Eliminar registros de caja relacionados...</span></ul>
+  <ul><span class="icon-spinner">Eliminar ordenes de traslado relacionados...</span></ul>
+</li>
+
+      </div>
+      <div>
+        <form action="crud_ordenes/delete.php" method="post"> 
+
+        <input value="<?php echo $ID_ORD ?>" id="id" name="id" type="hidden" >
+        
+        <button type="submit" id="guardar" name="guardar" class="btn btn-danger btn-lg btn-block mt-3">ELIMINAR</button>
+        </form>
+      </div>
+
+
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">CERRAR</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div id="entrega"  class="modal" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title"><span class="icon-price-tags"></span> ORDEN | <?php echo $filaso ['ABREV']?>-<?php echo $filaso ['N_ORD']?> </h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>¡Servicio concluido!.
+          <br> Se procede a la entrega de prendas a cliente</p>
+      </div>
+      <div>
+        <form action="crud_ordenes/entregar.php" method="post"> 
+
+        <input value="<?php echo $ID_ORD ?>" id="id_ord" name="id_ord" type="hidden" >
+        
+        <button type="submit" id="guardar" name="guardar" class="btn btn-primary btn-lg btn-block mt-3">ENTREGAR</button>
+        </form>
+      </div>
+
+
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">CERRAR</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 <?php include('includes/footer.php'); ?>
+

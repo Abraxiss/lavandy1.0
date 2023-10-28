@@ -28,7 +28,6 @@ GROUP BY diario.ID_ORD, diario.TIPO_OPERACION
 HAVING (((diario.ID_ORD)='$ID_ORD'));";
 $result2=mysqli_query($conexion, $query2);
 
-
 $Descuento_vta = 0;
 $Anticipo_vta = 0;
 $Cancelacion_vta = 0;
@@ -61,21 +60,30 @@ if ($result2) {
   IGV=0,
   CANCELACION = '$Cancelacion_vta',
   SALDO= '$Provicion_vta' - '$Descuento_vta' - '$Anticipo_vta' - '$Cancelacion_vta' 
-  
-
   WHERE ID_ORD=$ID_ORD";
 
   mysqli_query($conexion, $query);
 
 
+if (isset($_GET['x'])) {
+    $X= $_GET['x'];
+ ?>     
+<meta http-equiv="refresh" 
+      content="0;url=../caja_read.php" />
+<?php 
 
-
-
-mysqli_close($conexion);
+} else {
  ?>   
 <meta http-equiv="refresh" 
       content="0;url=./../ordenes_detalle.php?id=<?php echo $ID_ORD ?>" />
 <?php 
+
+}
+
+
+
+
+
 
 exit();
 
