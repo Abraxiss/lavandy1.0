@@ -1,34 +1,26 @@
 <?php  
   $queryR="
-
-SELECT detallesdeord.ID_DETALLE, detallesdeord.ID_ORD, tiendas.ABREV, ordenes.N_ORD, detallesdeord.DESCRIPCION, ordenes.FECHA_ENTREGA, ordenes.HORA_ENTREGA, detallesdeord.STADO_LAVADO, estatus_lavado.st_lavado, procesos.ID_PROCESO AS ÚltimoDeID_PROCESO, secuencias.SECUENCIA AS ÚltimoDeSECUENCIA, procesos.F_INICIO AS ÚltimoDeF_INICIO, procesos.H_INICIO AS ÚltimoDeH_INICIO, procesos.T_ESTIMADO AS T_ESTIMADO
-FROM ((((detallesdeord 
-INNER JOIN ordenes ON detallesdeord.ID_ORD = ordenes.ID_ORD) 
-INNER JOIN tiendas ON ordenes.ID_TIENDA = tiendas.ID_TIENDA) 
-INNER JOIN estatus_lavado ON detallesdeord.STADO_LAVADO = estatus_lavado.id_st_lavado) 
-INNER JOIN procesos ON detallesdeord.ID_DETALLE = procesos.ID_ORD_DTLL) 
-INNER JOIN secuencias ON procesos.ID_SECUENCIA = secuencias.ID_SECUENCIA
-WHERE detallesdeord.STADO_LAVADO = 4
-AND procesos.ID_PROCESO = (SELECT MAX(p.ID_PROCESO) FROM procesos p WHERE p.ID_ORD_DTLL = detallesdeord.ID_DETALLE)
-ORDER BY detallesdeord.ID_ORD DESC;
-
+SELECT ordenes.ID_ORD, tiendas.ABREV, ordenes.N_ORD, ordenes.FECHA_INICIO, ordenes.HORA_INICIO, ordenes.FECHA_ENTREGA, ordenes.HORA_ENTREGA, estatus_lavado.st_lavado, estatus_lavado.Alcance, estatus_lavado.id_st_lavado, ordenes.TOTAL_KILOS, ordenes.TOTAL_PRENDAS, ordenes.OBS_ORD
+FROM (ordenes INNER JOIN tiendas ON ordenes.ID_TIENDA = tiendas.ID_TIENDA) INNER JOIN estatus_lavado ON ordenes.STATUS_LAVADO = estatus_lavado.id_st_lavado
+WHERE (((estatus_lavado.id_st_lavado) IN (5)));
 
 
 ";
   $resultR=mysqli_query($conexion, $queryR);
-
 ?>
 
 
-
 <table class="table table-striped table-sm">
-  <thead  class="thead-dark">
+
+  <thead  class="thead-dark " >
     <tr>
-      <th scope="col">PRENDA </th>
       <th scope="col">ORDEN</th>
-      <th scope="col">FECHA ENTREGA</th>
-      <th scope="col"> ESTADO </th>
-      <th scope="col">PROCESO</th>
+      <th scope="col">CONTENIDO</th>
+      <th scope="col">FECHAS </th>
+      <th scope="col"> LAVADO </th>
+      <th scope="col"> OBSERVACION </th>
+
+      
 
     </tr>
   </thead>
@@ -37,49 +29,33 @@ ORDER BY detallesdeord.ID_ORD DESC;
       <?php while($filasR=mysqli_fetch_assoc($resultR)) { ?>
       <tr> 
 
-          <th>
-            <?php echo $filasR ['DESCRIPCION'] ?>
-
-
-          </th> 
-
-          <td scope="row">
-           <?php echo $filasR ['ABREV']  ?>-
+          <th scope="row">
+          <a type="button" class="btn btn-primary" href="./ordenes_detalle.php?id=<?php echo $filasR ['ID_ORD']  ?>" > 
+          <span class="icon-price-tags"></span>           
+           <?php echo $filasR ['ABREV']  ?> -
            <?php echo $filasR ['N_ORD']  ?>
-             
-          </td>
-
-          <td>
-           <?php echo $filasR ['FECHA_ENTREGA']  ?>-
-           <?php echo $filasR ['HORA_ENTREGA']  ?>
-          </td>
-
-           <td>
-          
-           <?php echo $filasR ['st_lavado']  ?> <br>
-           <?php echo $filasR ['ÚltimoDeSECUENCIA']  ?>
-           <?php 
-            $query="SELECT *FROM procesos ";
-            $result=mysqli_query($conexion, $query);
-            $filas=mysqli_fetch_assoc($result)
-            ?>
-   
-
-          </td>
-   
-
-
-      <td> 
-          <a href="procesos_create.php?id=<?php echo $filasR['ID_DETALLE']?>&io=<?php echo $filasR['ID_ORD']?>" class="btn btn-primary">
-          <span class="icon-clock2 "></span> 
-          <?php echo $filasR ['ÚltimoDeH_INICIO']  ?>
-          <span class="icon-history"></span>
-          <?php echo $filasR ['T_ESTIMADO']  ?>
-          
           </a> 
 
+          </th> 
+          <td >
+           KG:<?php echo $filasR ['TOTAL_KILOS']  ?> <br>
+           UND:<?php echo $filasR ['TOTAL_PRENDAS']  ?> 
+             
+          </td>
+          <td >
+           F.INICIO: <?php echo $filasR ['FECHA_INICIO']  ?>-
+           <?php echo $filasR ['HORA_INICIO']  ?><br>
+           F.ENTREGA: <?php echo $filasR ['FECHA_ENTREGA']  ?>-
+           <?php echo $filasR ['HORA_ENTREGA']  ?> 
+          </td>
+          <td>
+           <?php echo $filasR ['st_lavado']  ?>
+          </td>
+          <td>
+           <?php echo $filasR ['OBS_ORD']  ?>
+          </td>
 
-      </td>
+                  
       </tr>
     <?php } ?>
 
@@ -88,4 +64,3 @@ ORDER BY detallesdeord.ID_ORD DESC;
     
   </tbody>
 </table>
-

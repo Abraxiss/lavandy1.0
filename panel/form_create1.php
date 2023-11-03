@@ -1,4 +1,3 @@
-
    <?/*---formulario tabla---*/?>
 <?php 
 $t = $_GET['t'];

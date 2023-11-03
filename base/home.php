@@ -49,8 +49,8 @@ filter: brightness(80%);
       <div class="menu mm">
         
         <a href="produccion_read.php?s=1" class="btn btn-primary btn-lg btn-block"> <span class="icon-cog "> </span> PRODUCCION </a>
-
-        <a href="clientes_read.php" class="btn btn-primary btn-lg btn-block"><span class="icon-users"> </span> CLIENTES</a>
+  
+        <a href="planiacion.php" class="btn btn-primary btn-lg btn-block"><span class="icon-cogs"> </span> ORGANIZAR</a>
         
         <a href="traslados_read_p.php" class="btn btn-primary btn-lg btn-block"> <span class="icon-truck"> </span> TRASLADOS </a>
 

@@ -14,6 +14,8 @@
     <link rel="stylesheet" href="./../style.css">
     <link rel="stylesheet" href="stylos/stylosmenu.css">
 
+    
+
    <style>
     /* Personaliza el color de fondo de los botones primary a morado oscuro */
     .btn-primary {

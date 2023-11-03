@@ -7,32 +7,15 @@
 
 <br>
 
-<?php 
-
-if (isset($_GET['id'])) {
-$ID_ORD=$_GET['id'];
-
-  $queryo="
-SELECT ordenes.ID_ORD, ordenes.*, usuarios.user_nick, tiendas.ABREV, clientes.NOMBRE, clientes.TELEFONO, clientes.DIRECCION, tipolavados.LAVADO, perfume.PERFUME, forma_pagos.FORMAPAGO, estatus_orden.ST_ORD, tiendas.TIENDA, estatus_lavado.st_lavado, estatus_orden.ALCANCE, estatus_lavado.Alcance AS ALCANCELAVADO
-FROM estatus_lavado RIGHT JOIN (((((((ordenes INNER JOIN tiendas ON ordenes.ID_TIENDA = tiendas.ID_TIENDA) INNER JOIN perfume ON ordenes.ID_PERFUME = perfume.ID_PERFUME) INNER JOIN clientes ON ordenes.ID_CLIENTE = clientes.ID_CLIENTE) INNER JOIN tipolavados ON ordenes.ID_LAVADO = tipolavados.ID_LAVADO) INNER JOIN usuarios ON ordenes.ID_USER = usuarios.id_user) LEFT JOIN forma_pagos ON ordenes.FORMA_PAGO = forma_pagos.ID_FP) INNER JOIN estatus_orden ON ordenes.STATUS_ORD = estatus_orden.ID_ST_ORD) ON estatus_lavado.id_st_lavado = ordenes.STATUS_LAVADO
-WHERE (((ordenes.ID_ORD)='$ID_ORD'));
-
-;
-
-";
-
-  $resulto=mysqli_query($conexion, $queryo);
-$filaso=mysqli_fetch_assoc($resulto);
-
-}
-?>
 
 <!-- CARD -->
 <div class="card text-center">
   <div class="card-header">
     <B><h4>
-    <span class="icon-price-tags"></span> ORDEN | <?php echo $filaso ['ABREV']?>-<?php echo $filaso ['N_ORD']?> 
+    <span class="icon-cogs"> </span>
+      PLANIACIÓN DE PROCESOS
     </B></h4>
+
 
 </div>
 
@@ -46,9 +29,12 @@ $filaso=mysqli_fetch_assoc($resulto);
 
 <!-- tabla detalles de orden -->
   <?php 
-  $queryD="SELECT detallesdeord.*, detallesdeord.ID_ORD, secuencias.SECUENCIA
-FROM detallesdeord LEFT JOIN secuencias ON detallesdeord.ID_SECUENCIA = secuencias.ID_SECUENCIA
-WHERE (((detallesdeord.ID_ORD)='$ID_ORD'));
+  $queryD="
+SELECT detallesdeord.*, detallesdeord.ID_ORD, secuencias.SECUENCIA, ordenes.STATUS_LAVADO, tiendas.ABREV, ordenes.N_ORD, ordenes.OBS_ORD
+FROM ((detallesdeord LEFT JOIN secuencias ON detallesdeord.ID_SECUENCIA = secuencias.ID_SECUENCIA) INNER JOIN ordenes ON detallesdeord.ID_ORD = ordenes.ID_ORD) INNER JOIN tiendas ON ordenes.ID_TIENDA = tiendas.ID_TIENDA
+WHERE (((ordenes.STATUS_LAVADO)=3));
+
+
 
 ";
   $resultD=mysqli_query($conexion, $queryD);
@@ -59,6 +45,7 @@ WHERE (((detallesdeord.ID_ORD)='$ID_ORD'));
 <table class="table table-striped table-sm">
   <thead class="thead-dark">
     <tr>
+      <th scope="col">#ORDEN</th>
       <th scope="col">CANTIDAD</th>
       <th scope="col">DESCRIPCION</th>
       <th scope="col">ALCANCE</th>
@@ -76,7 +63,22 @@ WHERE (((detallesdeord.ID_ORD)='$ID_ORD'));
   <tbody>
     <?php while ($filasD = mysqli_fetch_assoc($resultD)) { ?>
       <tr>
-        <th scope="row"><?php echo $filasD['CANTIDA'] ?> 
+        <th >
+          <a href="ordenes_detalle.php?id=<?php echo $filasD ['ID_ORD']?>" class="btn btn-primary " style="color: white;">
+          <?php 
+          $OBS = $filasD ['OBS_ORD'];
+          if ($OBS=="" ) {
+           ?> <span class="icon-price-tag"></span> &nbsp <?php  
+          echo " " . $filasD ['ABREV'];  echo "-" . $filasD ['N_ORD'] ;  
+          } else {
+           ?> <span class="icon-eye"></span> &nbsp <?php  
+          echo " " . $filasD ['ABREV'];  echo "-" . $filasD ['N_ORD'] ;  
+
+          }
+           ?>     
+          </a>
+        </th>
+        <th ><?php echo $filasD['CANTIDA'] ?> 
           <br><?php echo $filasD['TIPO_VTA'] ?>
         </th>
         <td><?php echo $filasD['DESCRIPCION'] ?>
@@ -196,86 +198,6 @@ WHERE (((detallesdeord.ID_ORD)='$ID_ORD'));
     <?php } ?>
   </tbody>
 </table>
-
-
-<div class="dropdown-divider"></div>
-
-
-<br>  
-
-
-
-
-<!-- tabla detalles de orden -->
-  <?php 
-  $querypo="
-SELECT procesos.ID_ORD, detallesdeord.TIPO_VTA, detallesdeord.CANTIDA, detallesdeord.DESCRIPCION, detallesdeord.COLOR, detallesdeord.OBSERVACION_DTLL, secuencias.SECUENCIA, procesos.F_INICIO, procesos.H_INICIO, procesos.T_ESTIMADO, procesos.OBS_PROCESO, detallesdeord.STADO_PREN, metodos.METODO, detallesdeord.ID_DETALLE, procesos.ID_PROCESO
-FROM ((secuencias INNER JOIN procesos ON secuencias.ID_SECUENCIA = procesos.ID_SECUENCIA) INNER JOIN detallesdeord ON procesos.ID_ORD_DTLL = detallesdeord.ID_DETALLE) LEFT JOIN metodos ON procesos.ID_METODO = metodos.ID_METODO
-WHERE (((procesos.ID_ORD)='$ID_ORD'));
-
-
-";
-  $resultpo=mysqli_query($conexion, $querypo);
-
-
-  ?>
-<h4> Procesos de Lavado</h4>
-<table class="table table-striped table-sm">
-  <thead class="thead-dark">
-    <tr>
-      <th scope="col">CANTIDAD</th>
-      <th scope="col">DESCRIPCION</th>
-      <th scope="col">ALCANCE</th>
-      <th scope="col">SECUENCIA</th>
-      <th scope="col">METODO</th>
-      <th scope="col">INICIO</th>
-      <th scope="col">ESTIMADO</th>
-      <th scope="col">OBSERVACION</th>
-      <th scope="col">EDITAR</th>
-
-    </tr>
-  </thead>
-  <tbody>
-    <?php while ($filaspo = mysqli_fetch_assoc($resultpo)) { ?>
-      <tr>
-        <th scope="row"><?php echo $filaspo['CANTIDA'] ?> 
-          <br><?php echo $filaspo['TIPO_VTA'] ?>
-        </th>
-        <td><?php echo $filaspo['DESCRIPCION'] ?>
-          <br><?php echo $filaspo['COLOR'] ?>
-        </td>
-        <td>
-          <?php echo $filaspo['OBSERVACION_DTLL'] ?> (<?php echo $filaspo['STADO_PREN'] ?>)</td>
-        <td>            
-            <?php echo $filaspo['SECUENCIA'] ?>            
-        </td>
-        <td>            
-            <?php echo $filaspo['METODO'] ?>            
-        </td>
-         <td>
- <?php echo $filaspo['F_INICIO'] ?> -  
-  <?php echo $filaspo['H_INICIO'] ?> 
-          </td>
-
-          <td>
-<?php echo $filaspo['T_ESTIMADO'] ?>              
-          </td>
-
-          <td>
-<?php echo $filaspo['OBS_PROCESO'] ?>              
-          </td>
-          <td>
-          <a href="procesos_create.php?id=<?php echo $filaspo ['ID_DETALLE']  ?>&io=<?php echo $filaspo ['ID_ORD']  ?>&ip=<?php echo $filaspo ['ID_PROCESO']  ?>" class="btn btn-dark"> 
-          <span class=" icon-pencil2 "></span>
-           
-          </td>
-  
-
-      </tr>
-    <?php } ?>
-  </tbody>
-</table>
-
 
 
 

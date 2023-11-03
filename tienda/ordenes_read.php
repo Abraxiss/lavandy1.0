@@ -212,7 +212,7 @@ ORDER BY ordenes.ID_ORD DESC;
 <table id="example" class="table table-striped table-sm">
   <thead  class="thead-dark">
     <tr>
-      <th scope="col">#ORD</th>
+      <th scope="col">#ORDEN</th>
       <th scope="col">ESTADO</th>
       <th scope="col">FECHA</th>
       <th scope="col">CLIENTE</th>
@@ -225,9 +225,21 @@ ORDER BY ordenes.ID_ORD DESC;
    
     	<?php while($filasR=mysqli_fetch_assoc($resultR)) { ?>
       <tr>       
-      <th scope="row">
-        <?php echo $filasR ['ABREV']  ?>-<?php echo $filasR ['N_ORD']  ?><br><?php echo $filasR ['OBS_ORD']  ?>
-      </th>
+      <td >
+<a href="crud_diario/create_vta.php?ido=<?php echo $filasR ['ID_ORD']?>" class="btn btn-primary " style="color: white;">
+<?php 
+$OBS = $filasR ['OBS_ORD'];
+if ($OBS=="" ) {
+ ?> <span class="icon-price-tag"></span> &nbsp <?php  
+echo " " . $filasR ['ABREV'];  echo "-" . $filasR ['N_ORD'] ;  
+} else {
+ ?> <span class="icon-eye"></span> &nbsp <?php  
+echo " " . $filasR ['ABREV'];  echo "-" . $filasR ['N_ORD'] ;  
+
+}
+ ?>     
+</a>
+      </td>
       <td>
         <?php echo $filasR ['ST_ORD']  ?> 
       </td>

@@ -27,7 +27,7 @@ $ID_ORD=$_GET['ord'];
 /*---redireccion ---*/
  ?>   
 <meta http-equiv="refresh" 
-      content="0;url=./../traslados_read.php?s=1" />
+      content="0;url=./../traslados_read.php?s=2" />
 <?php
 
 }
@@ -36,7 +36,7 @@ $ID_ORD=$_GET['ord'];
  
  ?>   
 <meta http-equiv="refresh" 
-      content="0;url=./../traslados_read.php?s=1" />
+      content="0;url=./../traslados_read.php?s=2" />
 <?php
 
 ?>

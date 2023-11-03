@@ -12,6 +12,9 @@
     
     <!-- FUENTES ICONOS LOCAL -->
     <link rel="stylesheet" href="./../style.css">
+
+     <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="../tienda/datatables/bootstrap/css/bootstrap.min.css">
     
    <style>
     /* Personaliza el color de fondo de los botones primary a morado oscuro */

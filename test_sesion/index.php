@@ -1,3 +1,6 @@
+<?php session_start(); ?>
+
+
 <!doctype html>
 <html lang="en">
   <head>
@@ -16,7 +19,7 @@
      
  <?php
 // Inicia la sesión
-session_start();
+
 
 // Almacena un valor en la variable de sesión
 $_SESSION['test'] = 'Hola, mundo!';

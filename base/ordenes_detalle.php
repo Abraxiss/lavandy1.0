@@ -53,6 +53,15 @@ $filaso=mysqli_fetch_assoc($resulto);
 
       <table class="table table-sm table-striped ">
   <tbody>
+
+    <tr>
+      <th scope="row">TIENDA</th>
+      <td><?php echo $filaso ['TIENDA']?></td>
+    </tr>
+    <tr>
+      <th scope="row">VENDEDOR</th>
+      <td><?php echo $filaso ['user_nick']?></td>
+    </tr>    
     <tr>
       <th scope="row">CLIENTE</th>
       <td><?php echo $filaso ['NOMBRE']?></td>
@@ -77,33 +86,15 @@ $filaso=mysqli_fetch_assoc($resulto);
       <th scope="row">PERFUME</th>
       <td><?php echo $filaso ['PERFUME']?></td>
     </tr>
-
-    <tr>
-      <th scope="row">FECHA INICIO</th>
-      <td><?php echo $filaso ['FECHA_INICIO']?> |<?php echo $filaso ['HORA_INICIO']?></td>
-    </tr>
-
-    <tr>
-      <th scope="row">FECHA ENTREGA</th>
-      <td><?php echo $filaso ['FECHA_ENTREGA']?>|<?php echo $filaso ['HORA_ENTREGA']?></td>
-    </tr>
    <tr>
       <th scope="row">A DOMICILIO</th>
       <td><?php echo $filaso ['ADOMICILIO']?></td>
     </tr>
 
-    <tr>
-      <th scope="row">OBSERVACION</th>
-      <td><?php echo $filaso ['OBS_ORD']?></td>
-    </tr>
-    <tr>
-      <th scope="row">VENDEDOR</th>
-      <td><?php echo $filaso ['user_nick']?></td>
-    </tr>
-    <tr>
-      <th scope="row">TIENDA</th>
-      <td><?php echo $filaso ['TIENDA']?></td>
-    </tr>
+
+
+
+
   </tbody>
 </table>
 
@@ -121,6 +112,16 @@ $filaso=mysqli_fetch_assoc($resulto);
       
        <table class="table table-sm table-striped">
   <tbody>
+   <tr>
+      <th scope="row">FECHA ENTREGA</th>
+      <td><?php echo $filaso ['FECHA_ENTREGA']?>|<?php echo $filaso ['HORA_ENTREGA']?></td>
+    </tr>
+    <tr>
+      <th scope="row">FECHA INICIO</th>
+      <td><?php echo $filaso ['FECHA_INICIO']?> |<?php echo $filaso ['HORA_INICIO']?></td>
+    </tr>
+
+
     <tr>
       <th scope="row">STATUS </th>
       <td><?php echo $filaso ['ST_ORD']?> ( <?php echo $filaso ['ALCANCE']?>) 
@@ -144,30 +145,8 @@ $filaso=mysqli_fetch_assoc($resulto);
 
     </tr>
     <tr>
-      <th scope="row">PRECIO</th>
-      <td><?php echo $filaso ['PRECIO']?></td>
-    </tr>
-    <tr>
-      <th scope="row">DESCUENTO</th>
-      <td><?php echo $filaso ['TOTAL_DESCUENTO']?></td>
-    </tr>
-
-    <tr>
-      <th scope="row">TOTAL_VTA </th>
-      <td><?php echo $filaso ['TOTAL_VTA']?> </td>
-    </tr>
-
-    <tr>
-      <th scope="row">ACTA</th>
-      <td><?php echo $filaso ['ACTA']?></td>
-    </tr>
-    <tr>
-      <th scope="row">CANCELACION</th>
-      <td><?php echo $filaso ['CANCELACION']?></td>
-    </tr>
-    <tr>
-      <th scope="row">SALDO</th>
-      <td><?php echo $filaso ['SALDO']?></td>
+      <th scope="row">OBSERVACION</th>
+      <td><?php echo $filaso ['OBS_ORD']?></td>
     </tr>
 
   </tbody>

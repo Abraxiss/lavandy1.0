@@ -70,6 +70,14 @@ $filaso=mysqli_fetch_assoc($resulto);
   </div>
 </div>
 
+<?php
+  $querytr="
+SELECT traslado.ID_ORD, tipo_traslado.TIPO_TRASLADO, traslado.FECHA_ENTREGA, traslado.ID_TRASLADO
+FROM traslado INNER JOIN tipo_traslado ON traslado.ID_TIPO_TRASLADO = tipo_traslado.ID_TIPO
+WHERE (((traslado.ID_ORD)='$ID_ORD'))
+";
+  $resulttr=mysqli_query($conexion, $querytr);
+?>
 
 
 
@@ -82,8 +90,17 @@ $filaso=mysqli_fetch_assoc($resulto);
 
       </h5>
 
-      <table class="table table-sm table-striped ">
+<table class="table table-sm table-striped ">
   <tbody>
+    <tr>
+      <th scope="row">TIENDA</th>
+      <td><?php echo $filaso ['TIENDA']?></td>
+    </tr>
+    <tr>
+      <th scope="row">VENDEDOR</th>
+      <td><?php echo $filaso ['user_nick']?></td>
+    </tr>
+
     <tr>
       <th scope="row">CLIENTE</th>
       <td><?php echo $filaso ['NOMBRE']?></td>
@@ -118,37 +135,32 @@ $filaso=mysqli_fetch_assoc($resulto);
       <th scope="row">FECHA ENTREGA</th>
       <td><?php echo $filaso ['FECHA_ENTREGA']?>|<?php echo $filaso ['HORA_ENTREGA']?></td>
     </tr>
-   <tr>
+    <tr>
       <th scope="row">A DOMICILIO</th>
       <td><?php echo $filaso ['ADOMICILIO']?></td>
     </tr>
+    
+<?php while($filastr=mysqli_fetch_assoc($resulttr)) { ?>
+  <tr>
+      <th>TRAS: <?php echo $filastr ['TIPO_TRASLADO']?> </th>
+      <td>ENT: <?php echo $filastr ['FECHA_ENTREGA']?></td>
+      </tr>
+<?php } ?>
+    
 
-    <tr>
-      <th scope="row">OBSERVACION</th>
-      <td><?php echo $filaso ['OBS_ORD']?></td>
-    </tr>
-    <tr>
-      <th scope="row">VENDEDOR</th>
-      <td><?php echo $filaso ['user_nick']?></td>
-    </tr>
-    <tr>
-      <th scope="row">TIENDA</th>
-      <td><?php echo $filaso ['TIENDA']?></td>
-    </tr>
   </tbody>
 </table>
 
   </div>
 
 
+
+
+
   <div class="card">
     
-      <h5 class="card-title">
+      <h5 class="card-title"></h5>
 <!-- Button trigger modal -->
-
-      </h5>
-
-
       
        <table class="table table-sm table-striped">
   <tbody>
@@ -199,6 +211,10 @@ $filaso=mysqli_fetch_assoc($resulto);
     <tr>
       <th scope="row">SALDO</th>
       <td><?php echo $filaso ['SALDO']?></td>
+    </tr>
+    <tr>
+      <th scope="row">OBSERVACION</th>
+      <td><?php echo $filaso ['OBS_ORD']?></td>
     </tr>
 
   </tbody>
@@ -543,10 +559,10 @@ WHERE (((detallesdeord.ID_ORD)='$ID_ORD'));
 
     <div class="form-group">
       <label for="obs_ord">OBSERVACION</label>
-      <input type="text" class="form-control" id="obs_ord" name="obs_ord" >
+      <input type="text" class="form-control" id="obs_ord" name="obs_ord" value="<?php echo $filaso ['OBS_ORD']?>" >
     </div>
 
-    <button type="submit" id="guardar" name="guardar" class="btn btn-primary btn-lg btn-block mt-3">GUARDAR</button>
+    <button type="submit" id="guardar" name="guardar" class="btn btn-primary btn-lg btn-block mt-3">ACTUALIZAR</button>
   </form>
 </div>
       </div>

@@ -2,33 +2,38 @@
 <?php include("./../../panel/data/conexion.php"); ?>
 <?php 
 
+
 /*---NEW ORDEN---*/
 
 if (isset($_GET['id'])) {
-  $ID_ORD=$_GET['id'];
+$ID_ORD=$_GET['id'];
+
+/// actualisa tabla ordenes
+
+  $query = "UPDATE ordenes set 
+    STATUS_LAVADO= 4,
+    STATUS_ORD = 5
+  WHERE ID_ORD=$ID_ORD";
+  mysqli_query($conexion, $query);
+
+/// actualisa tabla detallesdeord
+
+  $query = "UPDATE detallesdeord set 
+    ID_SECUENCIA= 8,
+    FINALIZADO= 1
+  WHERE ID_ORD=$ID_ORD";
+  mysqli_query($conexion, $query);
+
+/// registro tabla procesos
+
+  $ID_DETALLE=0;
   $ID_SECUENCIA=8;
   $ID_METODO=26;
   $F_INICIO = date("Y-m-d");
   $H_INICIO = date("H:i:s");
   $T_ESTIMADO = 0;
-  $OBS_PROCESO = 'Entregado a movilidad';
+  $OBS_PROCESO = 'Lavado concluido';
   $ID_USER = $id_userup;
-
-          $queryh="SELECT ordenes.ID_ORD, ordenes.ID_TIENDA
-            FROM ordenes
-            WHERE (((ordenes.ID_ORD)='$ID_ORD'));
-            ";
-          $resulth=mysqli_query($conexion, $queryh);
-          $filash=mysqli_fetch_assoc($resulth);
-          $TIENDADESTINO = $filash ['ID_TIENDA'];
-
-/// actualisa tabla detallesdeord
-
-  $query = "UPDATE detallesdeord set 
-    STADO_LAVADO= 4
-/*---FECHA_ENTREGA= NOW()---*/
-  WHERE ID_DETALLE=$ID_DETALLE";
-  mysqli_query($conexion, $query);
 
 $query1= "INSERT INTO procesos(
 ID_ORD,
@@ -55,8 +60,16 @@ ID_USER
 $result = mysqli_query($conexion, $query1);
 
 
-/*---create TRASLADO ---*/
 
+/*---create TRASLADO ---*/
+          $queryh="SELECT ordenes.ID_ORD, ordenes.ID_TIENDA
+            FROM ordenes
+            WHERE (((ordenes.ID_ORD)='$ID_ORD'));
+            ";
+          $resulth=mysqli_query($conexion, $queryh);
+          $filash=mysqli_fetch_assoc($resulth);
+          $TIENDADESTINO = $filash ['ID_TIENDA'];
+          
     $ID_TIENDA = 9;
     $TIPO_TRASLADO = 3 ;
     $ID_HORARIO = 1;
@@ -91,14 +104,9 @@ $query= "INSERT INTO traslado(
 /*---create ---*/
 $result = mysqli_query($conexion, $query);
 
-
-
-
-
-/*---redireccion ---*/
- ?>   
+?>   
 <meta http-equiv="refresh" 
-      content="0;url=./../produccion_read.php?s=3" />
+      content="0;url=./../produccion_read.php?s=2" />
 <?php
 
 }
@@ -107,7 +115,7 @@ $result = mysqli_query($conexion, $query);
  
  ?>   
 <meta http-equiv="refresh" 
-      content="0;url=./../produccion_read.php?s=3" />
+      content="0;url=./../produccion_read.php?s=2" />
 <?php
 
 ?>

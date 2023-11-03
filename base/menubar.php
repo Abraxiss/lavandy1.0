@@ -52,14 +52,12 @@ $hora_serv = date('H:i:s');  // Formato de hora: horas:minutos:segundos
          <a class="nav-link" href="home.php"><span class="icon-home"> </span> HOME</a>
       </li>     
 
-      <li class="nav-item active">
-        <a class="nav-link" href="ordenes_read.php"> <span class="icon-price-tags"> </span> ORDENES</a>
-      </li>
+
       <li class="nav-item active">
         <a class="nav-link" href="produccion_read.php?s=2"><span class="icon-truck"> </span> PRODUCCION</a>
       </li>
       <li class="nav-item active">
-        <a class="nav-link" href="clientes_read.php"> <span class="icon-users"> </span> CLIENTES</a>
+        <a class="nav-link" href="planiacion.php"> <span class="icon-cogs"> </span> ORGANIZAR</a>
       </li>
       <li class="nav-item active">
         <a class="nav-link" href="traslados_read.php?s=1"><span class="icon-truck"> </span> TRASLADOS</a>

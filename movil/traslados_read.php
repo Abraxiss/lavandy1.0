@@ -13,10 +13,12 @@
 
   $sta = $_GET['s'];
 
-  $queryR="SELECT traslado.ANULADO, traslado.OBS_TRASLADO, traslado.ORIGEN_TDA, traslado.ID_TIPO_TRASLADO, traslado.ID_TRASLADO, tipo_traslado.TIPO_TRASLADO, horarios_movil.HORARIO, tiendas.ABREV, tiendas.TIENDA AS TDAO, tiendas_1.TIENDA AS TDAD, ordenes.N_ORD, clientes.NOMBRE, clientes.TELEFONO, clientes.LINK_UBICACION, clientes.DIRECCION, estatus_tras.STATUS_TRAS, ordenes.OBS_ORD, traslado.ID_TRASLADO, traslado.OBS_TRASLADO, ordenes.ID_ORD
+  $queryR="
+SELECT traslado.ANULADO, traslado.OBS_TRASLADO, traslado.ORIGEN_TDA, traslado.ID_TIPO_TRASLADO, traslado.ID_TRASLADO, tipo_traslado.TIPO_TRASLADO, horarios_movil.HORARIO, tiendas.ABREV, tiendas.TIENDA AS TDAO, tiendas_1.TIENDA AS TDAD, ordenes.N_ORD, clientes.NOMBRE, clientes.TELEFONO, clientes.LINK_UBICACION, clientes.DIRECCION, estatus_tras.STATUS_TRAS, ordenes.OBS_ORD, traslado.ID_TRASLADO, traslado.OBS_TRASLADO, ordenes.ID_ORD, traslado.FECHA_RECOJO, traslado.FECHA_ENTREGA
 FROM ((((((traslado INNER JOIN ordenes ON traslado.ID_ORD = ordenes.ID_ORD) INNER JOIN horarios_movil ON traslado.ID_HORARIO = horarios_movil.ID_HORARIO) INNER JOIN tipo_traslado ON traslado.ID_TIPO_TRASLADO = tipo_traslado.ID_TIPO) INNER JOIN tiendas ON traslado.ORIGEN_TDA = tiendas.ID_TIENDA) INNER JOIN clientes ON ordenes.ID_CLIENTE = clientes.ID_CLIENTE) INNER JOIN tiendas AS tiendas_1 ON traslado.DESTINO_TDA = tiendas_1.ID_TIENDA) INNER JOIN estatus_tras ON traslado.ID_STATUS_TRAS = estatus_tras.ID_STATUS_TRAS
 WHERE (((traslado.ID_STATUS_TRAS)='$sta'))
 ORDER BY traslado.ID_TRASLADO DESC;
+
 
 ";
 	$resultR=mysqli_query($conexion, $queryR);
@@ -27,16 +29,19 @@ switch ($sta) {
         $active1 = 'active';
         $active2 = '';
         $active3 = '';
+        $tabla = 'traslados_tabla1.php';
         break;
     case 2:
         $active1 = '';
         $active2 = 'active';
         $active3 = '';
+        $tabla = 'traslados_tabla2.php';
         break;
     case 3:
         $active1 = '';
         $active2 = '';
         $active3 = 'active';
+        $tabla = 'traslados_tabla3.php';
         break;
     default:
         $active = '';
@@ -63,102 +68,10 @@ switch ($sta) {
   </div>
   <div class="card-body">
 
-
+<?php include($tabla) ?>
 
   </div>
 </div>
-
-<table class="table table-striped table-sm">
-  <thead  class="thead-dark">
-    <tr>
-      <th scope="col">CLIENTE </th>
-      <th scope="col">ORIGEN</th>
-      <th scope="col">DESTINO</th>
-      <th scope="col"> ANULADO </th>
-      <th scope="col">ALCANCE</th>
-      <th scope="col">OPCIONES</th>
-    </tr>
-  </thead>
-  <tbody>
-   
-      <?php while($filasR=mysqli_fetch_assoc($resultR)) { ?>
-      <tr> 
-
-          <th>
-            <a href="tel:+51<?php echo $filasR ['TELEFONO'] ?>" class="btn 
-              btn-primary btn-sm " target="_blank"> 
-              <span class="icon-phone "></span>
-            </a> 
-            <?php echo $filasR ['NOMBRE']  ?> 
- 
-            <br>
-              <a href="https://api.whatsapp.com/send?phone=51<?php echo $filasR ['TELEFONO'] ?>" class="btn btn-success btn-sm " target="_blank"> 
-              <span class="icon-whatsapp "></span>
-              </a>         
-             <a target="_blank" href="<?php echo $filasR ['LINK_UBICACION']  ?>"> 
-              <span class="icon-location"></span> <?php echo $filasR ['DIRECCION']  ?></a> 
-
-          </th> 
-
-          <td scope="row">
-           <span class="icon-home3"> </span>  
-           <?php echo $filasR ['TDAO']  ?>
-           <br>
-           <span class="icon-clock2"> </span>  
-           <?php echo $filasR ['HORARIO']  ?>
-             
-          </td>
-
-          <td>
-           <span class="icon-home3"> </span>  
-           <?php echo $filasR ['TDAD']  ?>
-           
-           <br>
-          <a href="./ordenes_detalle.php?id=<?php echo $filasR ['ID_ORD']  ?>" > 
-          <span class="icon-price-tags"></span>           
-           <?php echo $filasR ['ABREV']  ?> -
-           <?php echo $filasR ['N_ORD']  ?>
-          </a>  
-          </td>
-
-           <td>
-          
-           <?php echo $filasR ['ANULADO']  ?> 
-          </td>
-
-          <td>
-            <?php echo $filasR ['OBS_ORD']  ?>
-            <br>
-            <?php echo $filasR ['OBS_TRASLADO']  ?>
-            
-              <br>
-              <label style="color: red;">
-                <?php echo $filasR ['STATUS_TRAS']  ?>
-              </label>
-           
-          </td>         
-
-
-      <td> 
-          <a href="./crud_traslados/apendiente.php?id=<?php echo $filasR ['ID_TRASLADO']  ?>&ord=<?php echo $filasR ['ID_ORD']  ?>" class="btn btn-success"> 
-          <span class="icon-truck"></span>
-          </a> 
-          <a href="./crud_traslados/atransito.php?id=<?php echo $filasR ['ID_TRASLADO']  ?>&ord=<?php echo $filasR ['ID_ORD']  ?>" class="btn btn-warning"> 
-          <span class="icon-road"></span>
-          </a> 
-          <a href="./crud_traslados/aentregado.php?id=<?php echo $filasR ['ID_TRASLADO']  ?>&ord=<?php echo $filasR ['ID_ORD']  ?>"  class="btn btn-primary"> 
-          <span class="icon-box-add"></span>
-          </a> 
-
-      </td>
-      </tr>
-    <?php } ?>
-
-
-    
-    
-  </tbody>
-</table>
 
 
 
