@@ -1,9 +1,24 @@
-<?php include('includes/session.php'); ?>
 <?php include('includes/header.php'); ?>
 <link rel="stylesheet" href="style.css">
 <?php include("../panel/data/conexion.php"); ?>
+<?php $ID_ORD=$_GET['id'];?>
+<br>
+<!-- siguiente - anterior -->
+<div class="container" style="max-width: 100%; ">
+  <div class="row">
+    <div class="col-sm">
+      <a href="./ordenes_navega.php?id=<?php echo $ID_ORD - 1 ?>"  type="button" class="btn btn-primary btn-lg  btn-block"  style=" font-size: 30px; ">
+        <<< ANTERIOR
+      </a>
+    </div>
 
-<?php include('menubar.php'); ?>
+    <div class="col-sm">
+      <a href="./ordenes_navega.php?id=<?php echo $ID_ORD + 1 ?>" type="button" class="btn btn-primary btn-lg btn-block"   style=" font-size: 30px; ">
+        SIGUIENTE  >>>
+      </a>
+    </div>
+  </div>
+</div>
 
 <br>
 
@@ -49,26 +64,6 @@ $filaso=mysqli_fetch_assoc($resulto);
 </div>
 
 <br>  
-<!-- OPCIONES -->
-<div class="container" style="max-width: 100%;">
-  <div class="row">
-    <div class="col-sm">
-      <button  type="button" class="btn btn-dark btn-lg  btn-block" data-toggle="modal" data-target="#odetalle" >
-       <span class=" icon-plus"></span> NUEVO ITEM
-      </button>
-    </div>
-    <div class="col-sm">
-      <button  type="button" class="btn btn-success btn-lg btn-block" data-toggle="modal" data-target="#caja" >
-      <span class=" icon-coin-dollar"></span> C A J A
-      </button>
-    </div>
-    <div class="col-sm">
-      <button  type="button" class="btn btn-primary btn-lg btn-block" data-toggle="modal" data-target="#morden" >
-      <span class="icon-price-tags"></span> MODIFICAR ORDEN
-      </button>
-    </div>
-  </div>
-</div>
 
 <?php
   $querytr="
@@ -807,6 +802,24 @@ li ul {
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">CERRAR</button>
       </div>
+    </div>
+  </div>
+</div>
+
+<br>
+<!-- siguiente - anterior -->
+<div class="container" style="max-width: 100%; ">
+  <div class="row">
+    <div class="col-sm">
+      <a href="./ordenes_navega.php?id=<?php echo $ID_ORD - 1 ?>"  type="button" class="btn btn-primary btn-lg  btn-block"  style=" font-size: 30px; ">
+        <<< ANTERIOR
+      </a>
+    </div>
+
+    <div class="col-sm">
+      <a href="./ordenes_navega.php?id=<?php echo $ID_ORD + 1 ?>" type="button" class="btn btn-primary btn-lg btn-block"   style=" font-size: 30px; ">
+        SIGUIENTE  >>>
+      </a>
     </div>
   </div>
 </div>

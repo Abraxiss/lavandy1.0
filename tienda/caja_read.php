@@ -191,7 +191,7 @@ ORDER BY diario.ID_DIARIO DESC;
           <a href="ordenes_detalle.php?id=<?php echo $filasR ['ID_ORD']?>" class="btn btn-dark"> 
           <span class="icon-price-tags"></span>
           </a>
-          <a href="crud_diario/delete_caja.php?d=<?php echo $filasR ['ID_DIARIO'] ?>&o=<?php echo $filasR ['ID_ORD'] ?>&x=1" class="btn btn-danger" > 
+          <a onclick="return confirmLink()" href="crud_diario/delete_caja.php?d=<?php echo $filasR ['ID_DIARIO'] ?>&o=<?php echo $filasR ['ID_ORD'] ?>&x=1" class="btn btn-danger" > 
           <span class="icon-bin"></span>
           </a>           
       </td>
@@ -345,10 +345,19 @@ LIMIT 0, 5;
   </div>
 </div>
 
+ 
+
+<script >
+function confirmLink() {
+  // Obtenga la confirmación del usuario.
+  var confirmation = confirm(' ⚠ ¿Seguro que desea ELIMINAR el registro?');
 
 
-
-
+  // Si el usuario confirma, devuelva `true` para permitir que el enlace se siga.
+  // De lo contrario, devuelva `false` para evitar que el enlace se siga.
+  return confirmation;
+}
+</script>
 
 
 

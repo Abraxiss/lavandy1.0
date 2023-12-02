@@ -1,5 +1,4 @@
 <?php include('includes/session.php'); ?>
-
 <?php include('includes/header_datatables.php'); ?>
 <link rel="stylesheet" href="style.css">
 <?php include("../panel/data/conexion.php"); ?>
@@ -57,7 +56,7 @@
     <?php while($filas=mysqli_fetch_assoc($result)) { ?>
       
     <option value="<?php echo $filas ['ID_CLIENTE']?>" >
-      <?php echo $filas ['TELEFONO']  ?>  <?php echo $filas ['NOMBRE']  ?>
+        <?php echo $filas ['NOMBRE']  ?> - <?php echo $filas ['TELEFONO']  ?>
     </option>
     <?php } ?>
     </select>
@@ -81,7 +80,7 @@
       </div>
       <div class="col">
         <label for="hora_inicio">Hora de Inicio:</label>
-				<input value="<?php echo $hora_serv ; ?>" type="time" class="form-control" id="hora_inicio" name="hora_inicio" required>
+				<input value="<?php echo $hora_serv ; ?>" type="time" step="60" max="23:59" class="form-control" id="hora_inicio" name="hora_inicio" required>
 				</div>
     </div>
 
@@ -95,7 +94,7 @@
 
     	<div class="col">
       <label for="hora_entrega">Hora de Entrega:</label>
-      <input type="time" class="form-control" id="hora_entrega" name="hora_entrega" required>
+      <input type="time" step="60" max="23:59" class="form-control" id="hora_entrega" name="hora_entrega" required>
     	</div>
 </div>
 

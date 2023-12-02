@@ -7,7 +7,7 @@ $fecha_pc = "<div id='fechapc'></div>";
 
 <?php
 $fecha_serv = date('Y-m-d'); // Formato de fecha: año-mes-día
-$hora_serv = date('H:i:s');  // Formato de hora: horas:minutos:segundos
+$hora_serv = date('H:i');  // Formato de hora: horas:minutos:segundos
 
 ?>
 
@@ -58,6 +58,11 @@ color: #49257C;
       <li class="nav-item active">
         <a class="nav-link" href="ordenes_read.php"> <span class="icon-price-tags"> </span> VENTAS</a>
       </li>
+      <li class="nav-item active">
+        <a class="nav-link" href="ordenes_prendas.php"> <span class="icon-price-tags"> </span> PRENDAS</a>
+      </li>
+
+
       <li class="nav-item active">
         <a class="nav-link" href="clientes_read.php"> <span class="icon-users"> </span> CLIENTES</a>
       </li>
